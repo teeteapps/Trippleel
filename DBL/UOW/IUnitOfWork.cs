@@ -10,5 +10,6 @@ namespace DBL.UOW
     public class IUnitOfWork
     {
         ISecurityRepository SecurityRepository { get; }
+        IProductcategoryRepository ProductcategoryRepository { get; }
     }
 }

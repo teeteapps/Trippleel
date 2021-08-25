@@ -1,17 +1,20 @@
-﻿<div class="modal-header">
+﻿@model DBL.Enitites.Productcategory
+<div class="modal-header">
     <h5 class="text-sm modal-title" id="allpoliciesModalLabel">Product Category</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form asp-action="Postnewagreementaccount" asp-controller="Agreements" method="post">
-    <div class="modal-body">
-        <div class="row">
-            
+
+<div class="modal-body">
+    <div class="row">
+        <div class="form-group">
+            <label asp-for="Categoryname"></label>
+            <input asp-for="Categoryname" class="form-control form-control-sm" id="categorynameid" />
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-sm btn-info" value="Save">
-    </div>
-</form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+    <input type="submit" onclick="addproductcategory()" class="btn btn-sm btn-info" value="Save">
+</div>

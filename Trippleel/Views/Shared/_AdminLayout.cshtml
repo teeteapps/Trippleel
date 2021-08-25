@@ -8,6 +8,7 @@
     <link href="~/lib/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini text-sm">
     <div class="wrapper">
@@ -177,6 +178,12 @@
             </div>
             <div class="content">
                 <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12" id="AlertsContainer">
+                            @{ await Html.RenderPartialAsync("_Alerts"); }
+                        </div>
+                    </div>
+                    <div id="overlay"></div>
                     @RenderBody()
                 </div>
             </div>
