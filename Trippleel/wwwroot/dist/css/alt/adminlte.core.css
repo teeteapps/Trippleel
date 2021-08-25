@@ -12363,9 +12363,9 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(.sidebar-m
   margin-left: -250px;
 }
 
-.sidebar-collapse .main-sidebar .nav-sidebar.nav-child-indent .nav-treeview {
-  padding: 0;
-}
+    .sidebar-collapse .main-sidebar .nav-sidebar.nav-child-indent .nav-treeview {
+        padding-left: 1rem;
+    }
 
 @media (max-width: 767.98px) {
   .main-sidebar, .main-sidebar::before {

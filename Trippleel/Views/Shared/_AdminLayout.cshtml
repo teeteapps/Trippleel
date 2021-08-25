@@ -141,6 +141,11 @@
                                         <p>Product Category</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Productcategorylist","Productcategory")" class="nav-link">
+                                        <p>Product Subcategory</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -187,5 +192,6 @@
     <script src="~/lib/plugins/chart.js/Chart.min.js"></script>
     <script src="~/dist/js/demo.js"></script>
     <script src="~/dist/js/pages/dashboard3.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

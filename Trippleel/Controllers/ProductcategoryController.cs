@@ -19,5 +19,10 @@ namespace Trippleel.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Addproductcategory()
+        {
+            return PartialView("_Productcategorypartial");
+        }
     }
 }
