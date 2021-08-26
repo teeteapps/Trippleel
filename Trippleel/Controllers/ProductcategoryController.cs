@@ -32,7 +32,7 @@ namespace Trippleel.Controllers
             model.Datecreated = DateTime.Now;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductcategory(model);
-            return Json(resp);
+            return Json(new {code=resp.RespStatus, msg = resp.RespMessage });
         }
     }
 }

@@ -1,4 +1,11 @@
-﻿$('#productcategorymodal').on('show.bs.modal', function (event) {
+﻿var Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
+
+$('#productcategorymodal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var url = button.attr("href");
     var modal = $(this);
@@ -24,12 +31,15 @@ function addproductcategory() {
             },
             type: "POST",
             dataType: 'json',
-            success: function (e) {
-                $("#loaderbody").addClass('hide');
-                console.log(JSON.stringify(e));
-            },
-            error: function (e) {
-                console.log(JSON.stringify(e));
+            success: function (result) {
+                setTimeout(function () { location.reload(); }, 2000);
+                if (result.code === 0) {
+                    Toast.fire({ icon: 'danger', title: result.msg });
+                } else {
+                    Toast.fire({ icon: 'success', title: result.msg });
+                }
+                $("#productcategorymodal").hide();
+                $("#categorynameid").val("");
             }
         });
     }
