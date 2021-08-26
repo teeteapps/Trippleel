@@ -22,10 +22,12 @@ namespace DBL.Repositories
             {
                 connection.Open();
                 DynamicParameters parameters = new DynamicParameters();
-                //parameters.Add("@Categoryname", entity.Categoryname);
-                //parameters.Add("@Createdby", entity.Createdby);
-                //parameters.Add("@Modifiedby", entity.Modifiedby);
-                return connection.Query<GenericModel>("Usp_AddPostcategory", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                parameters.Add("@Categoryname", entity.Categoryname);
+                parameters.Add("@Createdby", entity.Createdby);
+                parameters.Add("@Modifiedby", entity.Modifiedby);
+                parameters.Add("@Datecreated", entity.Datecreated);
+                parameters.Add("@Datemodified", entity.Datemodified);
+                return connection.Query<GenericModel>("Usp_Addproductcategory", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
         #endregion

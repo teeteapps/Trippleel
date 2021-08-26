@@ -27,6 +27,10 @@ namespace Trippleel.Controllers
         }
         public async Task<JsonResult> Addproductcategory(Productcategory model)
         {
+            model.Createdby = 100;
+            model.Modifiedby = 100;
+            model.Datecreated = DateTime.Now;
+            model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductcategory(model);
             return Json(resp);
         }

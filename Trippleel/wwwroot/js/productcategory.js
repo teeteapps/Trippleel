@@ -9,17 +9,23 @@ $('#productcategorymodal').on('hidden.bs.modal', function () {
     $('#productcategorymodal .modal-content').empty();
 });
 
+
 function addproductcategory() {
+    $("#loaderbody").addClass('hide');
     if ($("#categorynameid").val() == "") {
+        $("#loaderbody").removeClass('hide');
         alert("nothing to show");
         $("#overlay").style.display = "block";
     } else {
         $.ajax({
-            url: "Productcategory/Addproductcategory",
-            data: $("#form").serialize(),
+            url: "Addproductcategory",
+            data: {
+                Categoryname : $("#categorynameid").val()
+            },
             type: "POST",
             dataType: 'json',
             success: function (e) {
+                $("#loaderbody").addClass('hide');
                 console.log(JSON.stringify(e));
             },
             error: function (e) {

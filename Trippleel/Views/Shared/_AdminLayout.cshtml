@@ -183,7 +183,10 @@
                             @{ await Html.RenderPartialAsync("_Alerts"); }
                         </div>
                     </div>
-                    <div id="overlay"></div>
+                    <div class="loaderbody" id="loaderbody">
+                        <div class="loader"></div>
+                    </div>
+
                     @RenderBody()
                 </div>
             </div>
