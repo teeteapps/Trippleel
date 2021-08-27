@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DBL.Enitites;
+using DBL.Model;
 using DBL.UOW;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace DBL
                 return Resp;
             });
         }
-        public Task<Productcategory> Getcategorydetails(long Categorycode)
+        public Task<Viewproductcategory> Getcategorydetails(long Categorycode)
         {
             return Task.Run(() =>
             {

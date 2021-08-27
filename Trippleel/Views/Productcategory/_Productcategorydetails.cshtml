@@ -1,4 +1,4 @@
-﻿@model DBL.Enitites.Productcategory
+﻿@model IEnumerable<DBL.Model.Viewproductcategory>
 <div class="card">
     <div class="card-header">
         <div class="row">
@@ -6,12 +6,12 @@
                 <h5 class="font-weight-light text-sm">Product Subcategory</h5>
             </div>
             <div class="col-sm-5">
-                <a asp-action="Addproductsubcategory" asp-controller="Productcategory" asp-route-Categorycode="@Model.Categorycode" class="btn btn-xs btn-info float-right" data-target="#productcategorymodal" data-toggle="modal">Add Subcategory</a>
+                <a asp-action="Addproductsubcategory" asp-controller="Productcategory" asp-route-Categorycode="@Model.FirstOrDefault().Categorycode" class="btn btn-xs btn-info float-right" data-target="#productcategorymodal" data-toggle="modal">Add Subcategory</a>
             </div>
         </div>
     </div>
     <div class="card-body">
-        @*<table class="table table-bordered table-striped compact nowrap text-nowrap flex-nowrap table-sm font-weight-light" id="productcategorytable">
+        <table class="table table-bordered table-striped compact nowrap text-nowrap flex-nowrap table-sm font-weight-light" id="productcategorytable">
             <thead>
                 <tr>
                     <th class="font-weight-light">Category Name</th>
@@ -26,7 +26,7 @@
                         <td> <a href="#" class="btn btn-xs btn-danger float-right">Delete</a><a href="#" class="btn btn-xs btn-info float-right ml-1 mr-1">Edit</a><a href="#" class="btn btn-xs btn-info float-right" onclick="productcategorydetails('@item.Categorycode')">Details</a></td>
                     </tr>
                 }
-            </tbody>*@
+            </tbody>
         </table>
     </div>
 </div>

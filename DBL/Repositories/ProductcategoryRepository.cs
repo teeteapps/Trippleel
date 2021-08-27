@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DBL.Enitites;
+using DBL.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,12 +39,12 @@ namespace DBL.Repositories
                 return connection.Query<GenericModel>("Usp_Addproductcategory", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
-        public Productcategory Getcategorydetails(long Categorycode)
+        public Viewproductcategory Getcategorydetails(long Categorycode)
         {
             using (var connection = new SqlConnection(_connString))
             {
                 connection.Open();
-                return connection.Query<Productcategory>(Getproductcategoryjson("Categorycode"),new {id=Categorycode }).FirstOrDefault();
+                return connection.Query<Viewproductcategory>(FindStatement(Viewproductcategory.TableName, "Categorycode"),new {id=Categorycode }).FirstOrDefault();
             }
         }
         public GenericModel Addproductsubcategory(Productsubcategory entity)
