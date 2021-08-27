@@ -1,6 +1,77 @@
-﻿
+﻿@model IEnumerable<DBL.Enitites.Attributes>
 @{
     ViewData["Title"] = "Productattributeslist";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <h5 class="font-weight-light text-sm">Product Attributes</h5>
+                    </div>
+                    <div class="col-sm-5">
+                        <a asp-action="Addproductattribute" asp-controller="Productattributes" class="btn btn-xs btn-info float-right" data-target="#productattributesmodal" data-toggle="modal">Add Attributes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped compact nowrap text-nowrap flex-nowrap table-sm font-weight-light" id="productattributetable">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-light">Attribute Name</th>
+                            <th class="float-right font-weight-light">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="font-weight-light">@item.Attributename</td>
+                                <td> <a href="#" class="btn btn-xs btn-danger float-right">Delete</a><a href="#" class="btn btn-xs btn-info float-right ml-1 mr-1">Edit</a><a href="#" class="btn btn-xs btn-info float-right" onclick="productcategorydetails('@item.Attributecode')">Details</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6" id="productsubcategorydatacard">
+
+    </div>
+</div>
+
+<div class="modal fade mt-5" id="productattributesmodal" tabindex="-1" role="dialog" aria-labelledby="productattributesmodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/productattributes.js"></script>
+    <script src="~/lib/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/lib/plugins/toastr/toastr.min.js"></script>
+    <script src="~/lib/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/lib/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#productattributetable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
+    </script>
+}

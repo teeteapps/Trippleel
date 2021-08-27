@@ -66,6 +66,14 @@ namespace DBL
                 return Resp;
             });
         }
+        public Task<GenericModel> Addproductattributes(Attributes obj)
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductattributesRepository.Addproductattributes(obj);
+                return Resp;
+            });
+        }
 
         #endregion
     }
