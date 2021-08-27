@@ -54,5 +54,15 @@ namespace Trippleel.Controllers
             model.Attributecode = Attributecode;
             return PartialView("_Productattributevaluespartial", model);
         }
+
+        public async Task<JsonResult> Addproductattributevalues(Attributevalues model)
+        {
+            model.Createdby = 100;
+            model.Modifiedby = 100;
+            model.Datecreated = DateTime.Now;
+            model.Datemodified = DateTime.Now;
+            var resp = await bl.Addproductattributevalues(model);
+            return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
+        }
     }
 }

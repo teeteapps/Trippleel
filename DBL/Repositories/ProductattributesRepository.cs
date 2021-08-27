@@ -46,6 +46,21 @@ namespace DBL.Repositories
                 return connection.Query<Attributevalues>(FindStatement(Attributevalues.TableName, "Attributecode"), new { id = Attributecode }).ToList();
             }
         }
+        public GenericModel Addproductattributevalues(Attributevalues entity)
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Attributecode", entity.Attributecode);
+                parameters.Add("@Attributevalname", entity.Attributevalname);
+                parameters.Add("@Createdby", entity.Createdby);
+                parameters.Add("@Modifiedby", entity.Modifiedby);
+                parameters.Add("@Datecreated", entity.Datecreated);
+                parameters.Add("@Datemodified", entity.Datemodified);
+                return connection.Query<GenericModel>("Usp_Addproductattributevalues", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
         #endregion
     }
 }

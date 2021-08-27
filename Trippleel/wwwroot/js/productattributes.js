@@ -39,7 +39,7 @@ function addproductattribute() {
 }
 
 function productcategorydetails(productcategoryid) {
-    $("#productsubcategorydatacard").empty();
+    $("#productattributevaluesdatacard").empty();
     $.ajax({
         url: "Getattributedetails",
         data: {
@@ -48,7 +48,7 @@ function productcategorydetails(productcategoryid) {
         type: "Get",
         dataType: 'html',
         success: function (result) {
-            $("#productsubcategorydatacard").html(result);
+            $("#productattributevaluesdatacard").html(result);
         }
     });
 }
@@ -58,15 +58,15 @@ function addattributevalues() {
         return false;
     } else {
         $.ajax({
-            url: "Addproductsubcategory",
+            url: "Addproductattributevalues",
             data: {
-                Categorycode: $("#attributecodeid").val(), Subcategoryname: $("#attributevalnameid").val()
+                Attributecode: $("#attributecodeid").val(), Attributevalname: $("#attributevalnameid").val()
             },
             type: "POST",
             dataType: 'json',
             success: function (result) {
                 if (result.code == 0) {
-                    $("#productcategorymodal").hide();
+                    $("#productattributesmodal").hide();
                     toastr.success(result.msg);
                 } else if (result.code == 1) {
                     toastr.danger(result.msg);
