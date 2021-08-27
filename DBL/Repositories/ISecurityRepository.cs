@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBL.Enitites;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace DBL.Repositories
 {
     public interface ISecurityRepository
     {
+        #region Login User
+        GenericModel Login(string userName);
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DBL.Enitites;
+using DBL.Helpers;
 using DBL.Model;
 using DBL.UOW;
 using System;
@@ -20,6 +21,49 @@ namespace DBL
             this._connString = connString;
             db = new UnitOfWork(connString);
         }
+
+        #region User Login
+        public Task<UserModel> Login(string userName, string password)
+        {
+            return Task.Run(() =>
+            {
+                UserModel userModel = new UserModel { };
+                var resp = db.SecurityRepository.Login(userName);
+                if (resp.RespStatus == 0)
+                {
+                    EncryptDecrypt sec = new EncryptDecrypt();
+                    string enccpass = sec.Encrypt(password);
+                    string descpass = sec.Decrypt(resp.Data4);
+
+                    if (password == descpass)
+                    {
+                        userModel = new UserModel
+                        {
+                            Subcode = Convert.ToInt64(resp.Data1),
+                            Fullname = resp.Data2,
+                            PhoneNo = resp.Data3,
+                            Email = resp.Data6,
+                            profilecode = Convert.ToInt32(resp.Data7)
+
+                        };
+                        return userModel;
+                    }
+                    else
+                    {
+                        userModel.RespStatus = 1;
+                        userModel.RespMessage = "Incorrect Password!";
+                    }
+                }
+                else
+                {
+                    userModel.RespStatus = 1;
+                    userModel.RespMessage = "Incorrect Password!";
+                }
+
+                return userModel;
+            });
+        }
+        #endregion
 
         #region  Product category
         public Task<IEnumerable<Productcategory>> Getproductcategorylist()
