@@ -38,6 +38,14 @@ namespace DBL.Repositories
                 return connection.Query<GenericModel>("Usp_Addproductattributes", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
+        public IEnumerable<Attributevalues> Getattributedetails(long Attributecode)
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                return connection.Query<Attributevalues>(FindStatement(Attributevalues.TableName, "Attributecode"), new { id = Attributecode }).ToList();
+            }
+        }
         #endregion
     }
 }

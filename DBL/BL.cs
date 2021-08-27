@@ -75,7 +75,14 @@ namespace DBL
                 return Resp;
             });
         }
-
+        public Task<IEnumerable<Attributevalues>> Getattributedetails(long Attributecode)
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductattributesRepository.Getattributedetails(Attributecode);
+                return Resp;
+            });
+        }
         #endregion
     }
 }

@@ -1,0 +1,32 @@
+﻿@model DBL.Model.Productattributedata
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-7">
+                <h5 class="font-weight-light text-sm">Attribute Values</h5>
+            </div>
+            <div class="col-sm-5">
+                <a asp-action="Addattributevalues" asp-controller="Productattributes" asp-route-Attributecode="@Model.Attributecode" class="btn btn-xs btn-info float-right" data-target="#productattributesmodal" data-toggle="modal">Add Attribute Values</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped compact nowrap text-nowrap flex-nowrap table-sm font-weight-light" id="productcategorytable">
+            <thead>
+                <tr>
+                    <th class="font-weight-light">Category Name</th>
+                    <th class="float-right font-weight-light">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Attributevaluesdata)
+                {
+                    <tr>
+                        <td class="font-weight-light">@item.Attributevalname</td>
+                        <td> <a href="#" class="btn btn-xs btn-danger float-right">Delete</a><a href="#" class="btn btn-xs btn-info float-right ml-1 mr-1">Edit</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -41,7 +41,7 @@ function addproductattribute() {
 function productcategorydetails(productcategoryid) {
     $("#productsubcategorydatacard").empty();
     $.ajax({
-        url: "Getcategorydetails",
+        url: "Getattributedetails",
         data: {
             categorycode: productcategoryid
         },
@@ -53,14 +53,14 @@ function productcategorydetails(productcategoryid) {
     });
 }
 
-function addproductsubcategory() {
-    if ($("#subcategorynameid").val() == "") {
+function addattributevalues() {
+    if ($("#attributevalnameid").val() == "") {
         return false;
     } else {
         $.ajax({
             url: "Addproductsubcategory",
             data: {
-                Categorycode: $("#categorycodeid").val(), Subcategoryname: $("#subcategorynameid").val()
+                Categorycode: $("#attributecodeid").val(), Subcategoryname: $("#attributevalnameid").val()
             },
             type: "POST",
             dataType: 'json',
@@ -73,8 +73,8 @@ function addproductsubcategory() {
                 } else {
                     toastr.danger('Database error occured. Kindly contact admin!');
                 }
-                $("#categorycodeid").val("");
-                $("#subcategorynameid").val("");
+                $("#attributecodeid").val("");
+                $("#attributevalnameid").val("");
             }
         });
     }

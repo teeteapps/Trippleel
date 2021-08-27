@@ -12,6 +12,7 @@ namespace DBL.Repositories
         #region Product Attributes
         IEnumerable<Attributes> GetProductattributeslist();
         GenericModel Addproductattributes(Attributes entity);
+        IEnumerable<Attributevalues> Getattributedetails(long Attributecode);
         #endregion
     }
 }

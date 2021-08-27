@@ -1,5 +1,6 @@
 ﻿using DBL;
 using DBL.Enitites;
+using DBL.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,23 @@ namespace Trippleel.Controllers
             model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductattributes(model);
             return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Getattributedetails(long Attributecode, string Attributename)
+        {
+            Productattributedata data = new Productattributedata();
+            data.Attributevaluesdata = await bl.Getattributedetails(Attributecode);
+            data.Attributecode = Attributecode;
+            data.Attributename = Attributename;
+            return PartialView("_Productattributedetails", data);
+        }
+        [HttpGet]
+        public IActionResult Addattributevalues(long Attributecode)
+        {
+            Attributevalues model = new Attributevalues();
+            model.Attributecode = Attributecode;
+            return PartialView("_Productattributevaluespartial", model);
         }
     }
 }
