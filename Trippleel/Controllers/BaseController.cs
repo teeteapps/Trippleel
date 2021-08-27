@@ -6,11 +6,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Trippleel.Models;
 
 namespace Trippleel.Controllers
 {
     public class BaseController : Controller
     {
+        public UserDataModel SessionUserData
+        {
+            get
+            {
+                {
+                    UserDataModel userDataSerializeModel = null;
+                    if (base.User is ClaimsPrincipal)
+                    {
+                        string claim = BaseController.GetClaim((base.User as ClaimsPrincipal).Claims.ToList<Claim>(), "userData");
+                        if (!string.IsNullOrEmpty(claim))
+                        {
+                            userDataSerializeModel = JsonConvert.DeserializeObject<UserDataModel>(claim);
+                        }
+                    }
+
+                    base.ViewData["UserData"] = (userDataSerializeModel ?? new UserDataModel());
+                    if (userDataSerializeModel == null)
+                    {
+                        string url = base.Url.Action("Login", "Account");
+                        HttpContext.Response.Redirect(url);
+                    }
+
+                    return userDataSerializeModel;
+                }
+            }
+        }
+
         public static string GetClaim(List<Claim> claims, string key)
         {
             Claim claim = claims.FirstOrDefault((Claim c) => c.Type == key);

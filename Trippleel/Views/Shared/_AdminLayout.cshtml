@@ -1,4 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+@using DBL.Helpers
+@{
+    bool authenticated = false;
+    string userId = "";
+    UserDataModel currentUserData = null;
+    long userType = -1;
+    if (User.Identities.Any(u => u.IsAuthenticated))
+    {
+        authenticated = true;
+        currentUserData = Util.GetCurrentUserData(User.Identities);
+        if (currentUserData != null)
+        {
+            userType = currentUserData.Staffcode;
+
+        }
+        userId = User.Identities.First(u => u.IsAuthenticated && u.HasClaim(c => c.Type == ClaimTypes.NameIdentifier))
+            .FindFirst(ClaimTypes.NameIdentifier).Value;
+    }
+    EncryptDecrypt sec = new EncryptDecrypt();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -97,7 +118,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-user-circle"></i>
-                        <span>Francis Kingori</span>
+                        <span class="text-capitalize">@currentUserData.Fullname</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm-right bg-dark">
                         <a href="@Url.Action("Profile","Account")" class="dropdown-item">
@@ -133,7 +154,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Staffslist","Accounts")" class="nav-link">
+                                    <a href="@Url.Action("Staffslist","Account")" class="nav-link">
                                         <i class="fas fa-arrow-right nav-icon"></i>
                                         <p>Staff List</p>
                                     </a>

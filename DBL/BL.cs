@@ -65,6 +65,17 @@ namespace DBL
         }
         #endregion
 
+        #region Staffs List
+        public Task<IEnumerable<Viewstaffsdata>> GetStaffslist()
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.SecurityRepository.GetStaffslist();
+                return Resp;
+            });
+        }
+        #endregion
+
         #region  Product category
         public Task<IEnumerable<Productcategory>> Getproductcategorylist()
         {

@@ -30,8 +30,8 @@ namespace Trippleel.Controllers
         }
         public async Task<JsonResult> Addproductattributes(Attributes model)
         {
-            model.Createdby = 100;
-            model.Modifiedby = 100;
+            model.Createdby = SessionUserData.Staffcode;
+            model.Modifiedby = SessionUserData.Staffcode;
             model.Datecreated = DateTime.Now;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductattributes(model);
@@ -57,8 +57,8 @@ namespace Trippleel.Controllers
 
         public async Task<JsonResult> Addproductattributevalues(Attributevalues model)
         {
-            model.Createdby = 100;
-            model.Modifiedby = 100;
+            model.Createdby = SessionUserData.Staffcode;
+            model.Modifiedby = SessionUserData.Staffcode; 
             model.Datecreated = DateTime.Now;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductattributevalues(model);

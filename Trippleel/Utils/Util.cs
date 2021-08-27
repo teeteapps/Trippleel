@@ -1,9 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Trippleel.Models;
 
 namespace Trippleel
 {
@@ -92,14 +95,14 @@ namespace Trippleel
             }
         }
 
-        //public static UserDataModel GetCurrentUserData(IEnumerable<ClaimsIdentity> claims)
-        //{
-        //    string userData = claims.First(u => u.IsAuthenticated && u.HasClaim(c => c.Type == "userData")).FindFirst("userData").Value;
-        //    if (string.IsNullOrEmpty(userData))
-        //        return null;
+        public static UserDataModel GetCurrentUserData(IEnumerable<ClaimsIdentity> claims)
+        {
+            string userData = claims.First(u => u.IsAuthenticated && u.HasClaim(c => c.Type == "userData")).FindFirst("userData").Value;
+            if (string.IsNullOrEmpty(userData))
+                return null;
 
-        //    return JsonConvert.DeserializeObject<UserDataModel>(userData);
-        //}
+            return JsonConvert.DeserializeObject<UserDataModel>(userData);
+        }
     }
 
     public class Alert

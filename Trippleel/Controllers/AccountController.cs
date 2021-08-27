@@ -96,6 +96,12 @@ namespace Trippleel.Controllers
             });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -108,12 +114,11 @@ namespace Trippleel.Controllers
             }
         }
         #endregion
-        #region Logout User
-        [HttpGet]
-        public async Task<IActionResult> Logout()
+        #region Staff Management
+        public async Task<IActionResult> Staffslist()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            var data = await bl.GetStaffslist();
+            return View(data);
         }
         #endregion
         public IActionResult Register()

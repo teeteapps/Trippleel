@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DBL.Enitites;
+using DBL.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,6 +27,17 @@ namespace DBL.Repositories
                 parameters.Add("@Emailaddress", userName);
 
                 return connection.Query<GenericModel>("Usp_VerifyUser", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
+        #endregion
+
+        #region Staffs List
+        public IEnumerable<Viewstaffsdata> GetStaffslist()
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                return connection.Query<Viewstaffsdata>(GetAllStatement(Viewstaffsdata.TableName)).ToList();
             }
         }
         #endregion

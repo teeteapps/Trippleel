@@ -30,8 +30,8 @@ namespace Trippleel.Controllers
         }
         public async Task<JsonResult> Addproductcategory(Productcategory model)
         {
-            model.Createdby = 100;
-            model.Modifiedby = 100;
+            model.Createdby = SessionUserData.Staffcode;
+            model.Modifiedby = SessionUserData.Staffcode;
             model.Datecreated = DateTime.Now;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductcategory(model);
@@ -56,8 +56,8 @@ namespace Trippleel.Controllers
         }
         public async Task<JsonResult> Addproductsubcategory(Productsubcategory model)
         {
-            model.Createdby = 100;
-            model.Modifiedby = 100;
+            model.Createdby = SessionUserData.Staffcode;
+            model.Modifiedby = SessionUserData.Staffcode;
             model.Datecreated = DateTime.Now;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductsubcategory(model);
