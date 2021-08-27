@@ -38,6 +38,14 @@ namespace DBL.Repositories
                 return connection.Query<GenericModel>("Usp_Addproductcategory", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
+        public Productcategory Getcategorydetails(long Categorycode)
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                return connection.Query<Productcategory>(FindStatement(Productcategory.TableName, "Categorycode"),new {id=Categorycode }).FirstOrDefault();
+            }
+        }
         #endregion
     }
 }

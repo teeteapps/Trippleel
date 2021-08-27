@@ -36,3 +36,18 @@ function addproductcategory() {
     }
     return false;
 }
+
+function productcategorydetails(productcategoryid) {
+    $("#productsubcategorydatacard").empty();
+    $.ajax({
+        url: "Getcategorydetails",
+        data: {
+           categorycode: productcategoryid
+        },
+        type: "Get",
+        dataType: 'html',
+        success: function (result) {
+            $("#productsubcategorydatacard").html(result);
+        }
+    });
+}

@@ -38,7 +38,15 @@ namespace DBL
                 return Resp;
             });
         }
-        
+        public Task<Productcategory> Getcategorydetails(long Categorycode)
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductcategoryRepository.Getcategorydetails(Categorycode);
+                return Resp;
+            });
+        }
+
         #endregion
     }
 }

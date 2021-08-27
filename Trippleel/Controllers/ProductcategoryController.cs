@@ -36,5 +36,11 @@ namespace Trippleel.Controllers
             var resp = await bl.Addproductcategory(model);
             return Json(new {code=resp.RespStatus, msg = resp.RespMessage });
         }
+        [HttpGet]
+        public async Task<IActionResult> Getcategorydetails(long Categorycode)
+        {
+            var data = await bl.Getcategorydetails(Categorycode);
+            return PartialView("_Productcategorydetails", data);
+        }
     }
 }
