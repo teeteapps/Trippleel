@@ -8,7 +8,7 @@ namespace DBL.Model
 {
     public class UserModel
     {
-        public long Subcode { get; set; }
+        public long Staffcode { get; set; }
         public string Fullname { get; set; }
         public string Email { get; set; }
         public string PhoneNo { get; set; }

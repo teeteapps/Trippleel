@@ -39,7 +39,7 @@ namespace DBL
                     {
                         userModel = new UserModel
                         {
-                            Subcode = Convert.ToInt64(resp.Data1),
+                            Staffcode = Convert.ToInt64(resp.Data1),
                             Fullname = resp.Data2,
                             PhoneNo = resp.Data3,
                             Email = resp.Data6,

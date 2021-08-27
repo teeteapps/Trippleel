@@ -43,27 +43,13 @@ namespace Trippleel.Controllers
                 {
                     UserModel User = new UserModel();
 
-                    User.Subcode = resp.Subcode;
+                    User.Staffcode = resp.Staffcode;
                     User.PhoneNo = resp.PhoneNo;
                     User.Email = resp.Email;
                     User.Fullname = resp.Fullname;
                     User.profilecode = resp.profilecode;
                     SetUserLoggedIn(User, false);
-                    //Viewer Profile
-                    if (User.profilecode == 300)
-                    {
-                        return RedirectToAction("Myprofile", "Home");
-                    }
-                    //Writer Profile
-                    else if (User.profilecode == 200)
-                    {
-                        return RedirectToAction("PostblogList", "Home");
-                    }
-                    //Admin Profile
-                    else
-                    {
-                        return RedirectToAction("PostblogList", "Home");
-                    }
+                    return RedirectToLocal(returnUrl);
 
                 }
                 else if (resp.RespStatus == 1)
@@ -82,7 +68,7 @@ namespace Trippleel.Controllers
         {
             UserDataModel serializeModel = new UserDataModel
             {
-                UserCode = user.Subcode,
+                Staffcode = user.Staffcode,
                 Fullname = user.Fullname,
                 UserName = user.Email,
                 Phonenumber = user.PhoneNo,
@@ -93,7 +79,7 @@ namespace Trippleel.Controllers
 
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Subcode.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Staffcode.ToString()),
                 new Claim(ClaimTypes.Name, user.Fullname),
                  new Claim("FullNames", serializeModel.Fullname),
                 new Claim("userData", userData),
@@ -108,6 +94,18 @@ namespace Trippleel.Controllers
                 IsPersistent = rememberMe,
                 ExpiresUtc = new DateTimeOffset?(DateTime.UtcNow.AddMinutes(30))
             });
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Dashboard), "Home");
+            }
         }
         #endregion
         #region Logout User

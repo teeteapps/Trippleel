@@ -7,7 +7,7 @@ namespace Trippleel.Models
 {
     public class UserDataModel
     {
-        public long UserCode { get; set; }
+        public long Staffcode { get; set; }
         public string Fullname { get; set; }
         public string UserName { get; set; }
         public string Phonenumber { get; set; }

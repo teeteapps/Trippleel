@@ -21,6 +21,10 @@ namespace Trippleel.Controllers
         {
             bl = new BL(Util.ShareConnectionString.Value);
         }
+        public IActionResult Dashboard()
+        {
+            return View();
+        } 
         public IActionResult Index()
         {
             return View();
