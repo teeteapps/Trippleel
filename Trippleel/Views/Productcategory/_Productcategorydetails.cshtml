@@ -6,7 +6,7 @@
                 <h5 class="font-weight-light text-sm">Product Subcategory</h5>
             </div>
             <div class="col-sm-5">
-                <a asp-action="Addproductsubcategory" asp-controller="Productcategory" class="btn btn-xs btn-info float-right" data-target="#productcategorymodal" data-toggle="modal">Add Subcategory</a>
+                <a asp-action="Addproductsubcategory" asp-controller="Productcategory" asp-route-Categorycode="@Model.Categorycode" class="btn btn-xs btn-info float-right" data-target="#productcategorymodal" data-toggle="modal">Add Subcategory</a>
             </div>
         </div>
     </div>

@@ -60,12 +60,11 @@ function addproductsubcategory() {
         $.ajax({
             url: "Addproductsubcategory",
             data: {
-                Subcategorycode: $("#subcategorycodeid").val(), Subcategoryname: $("#subcategorynameid").val()
+                Categorycode: $("#categorycodeid").val(), Subcategoryname: $("#subcategorynameid").val()
             },
             type: "POST",
             dataType: 'json',
             success: function (result) {
-                setTimeout(function () { location.reload(); }, 3000);
                 if (result.code == 0) {
                     $("#productcategorymodal").hide();
                     toastr.success(result.msg);
@@ -74,7 +73,7 @@ function addproductsubcategory() {
                 } else {
                     toastr.danger('Database error occured. Kindly contact admin!');
                 }
-                $("#subcategorycodeid").val("");
+                $("#categorycodeid").val("");
                 $("#subcategorynameid").val("");
             }
         });

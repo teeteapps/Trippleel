@@ -44,9 +44,11 @@ namespace Trippleel.Controllers
         }
 
         [HttpGet]
-        public IActionResult Addproductsubcategory()
+        public IActionResult Addproductsubcategory(long Categorycode)
         {
-            return PartialView("_Productsubcategorypartial");
+            Productsubcategory model = new Productsubcategory();
+            model.Categorycode = Categorycode;
+            return PartialView("_Productsubcategorypartial",model);
         }
         public async Task<JsonResult> Addproductsubcategory(Productsubcategory model)
         {
