@@ -46,6 +46,21 @@ namespace DBL.Repositories
                 return connection.Query<Productcategory>(FindStatement(Productcategory.TableName, "Categorycode"),new {id=Categorycode }).FirstOrDefault();
             }
         }
+        public GenericModel Addproductsubcategory(Productsubcategory entity)
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Categorycode", entity.Categorycode);
+                parameters.Add("@Subcategoryname", entity.Subcategoryname);
+                parameters.Add("@Createdby", entity.Createdby);
+                parameters.Add("@Modifiedby", entity.Modifiedby);
+                parameters.Add("@Datecreated", entity.Datecreated);
+                parameters.Add("@Datemodified", entity.Datemodified);
+                return connection.Query<GenericModel>("Usp_Addproductsubcategory", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
         #endregion
     }
 }

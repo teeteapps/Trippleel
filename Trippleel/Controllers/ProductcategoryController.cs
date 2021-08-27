@@ -42,5 +42,20 @@ namespace Trippleel.Controllers
             var data = await bl.Getcategorydetails(Categorycode);
             return PartialView("_Productcategorydetails", data);
         }
+
+        [HttpGet]
+        public IActionResult Addproductsubcategory()
+        {
+            return PartialView("_Productsubcategorypartial");
+        }
+        public async Task<JsonResult> Addproductsubcategory(Productsubcategory model)
+        {
+            model.Createdby = 100;
+            model.Modifiedby = 100;
+            model.Datecreated = DateTime.Now;
+            model.Datemodified = DateTime.Now;
+            var resp = await bl.Addproductsubcategory(model);
+            return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
+        }
     }
 }

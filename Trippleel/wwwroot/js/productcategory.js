@@ -12,6 +12,7 @@ $('#productcategorymodal').on('hidden.bs.modal', function () {
 
 function addproductcategory() {
     if ($("#categorynameid").val() == "") {
+        return false;
     } else {
         $.ajax({
             url: "Addproductcategory",
@@ -50,4 +51,33 @@ function productcategorydetails(productcategoryid) {
             $("#productsubcategorydatacard").html(result);
         }
     });
+}
+
+function addproductsubcategory() {
+    if ($("#subcategorynameid").val() == "") {
+        return false;
+    } else {
+        $.ajax({
+            url: "Addproductsubcategory",
+            data: {
+                Subcategorycode: $("#subcategorycodeid").val(), Subcategoryname: $("#subcategorynameid").val()
+            },
+            type: "POST",
+            dataType: 'json',
+            success: function (result) {
+                setTimeout(function () { location.reload(); }, 3000);
+                if (result.code == 0) {
+                    $("#productcategorymodal").hide();
+                    toastr.success(result.msg);
+                } else if (result.code == 1) {
+                    toastr.danger(result.msg);
+                } else {
+                    toastr.danger('Database error occured. Kindly contact admin!');
+                }
+                $("#subcategorycodeid").val("");
+                $("#subcategorynameid").val("");
+            }
+        });
+    }
+    return false;
 }

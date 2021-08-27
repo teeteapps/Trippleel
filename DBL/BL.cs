@@ -46,6 +46,14 @@ namespace DBL
                 return Resp;
             });
         }
+        public Task<GenericModel> Addproductsubcategory(Productsubcategory obj)
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductcategoryRepository.Addproductsubcategory(obj);
+                return Resp;
+            });
+        }
 
         #endregion
     }
