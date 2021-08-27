@@ -1,5 +1,6 @@
 ﻿using DBL;
 using DBL.Enitites;
+using DBL.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,15 @@ namespace Trippleel.Controllers
             model.Datecreated = DateTime.Now;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductcategory(model);
-            return Json(new {code=resp.RespStatus, msg = resp.RespMessage });
+            return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
         }
         [HttpGet]
-        public async Task<IActionResult> Getcategorydetails(long Categorycode)
+        public async Task<IActionResult> Getcategorydetails(long Categorycode, string Categoryname)
         {
-            var data = await bl.Getcategorydetails(Categorycode);
+            Productcategorydata data = new Productcategorydata();
+            data.Subcategorydata = await bl.Getcategorydetails(Categorycode);
+            data.Categorycode = Categorycode;
+            data.Categoryname = Categoryname;
             return PartialView("_Productcategorydetails", data);
         }
 
@@ -48,7 +52,7 @@ namespace Trippleel.Controllers
         {
             Productsubcategory model = new Productsubcategory();
             model.Categorycode = Categorycode;
-            return PartialView("_Productsubcategorypartial",model);
+            return PartialView("_Productsubcategorypartial", model);
         }
         public async Task<JsonResult> Addproductsubcategory(Productsubcategory model)
         {

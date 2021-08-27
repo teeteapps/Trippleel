@@ -39,7 +39,7 @@ namespace DBL
                 return Resp;
             });
         }
-        public Task<Viewproductcategory> Getcategorydetails(long Categorycode)
+        public Task<IEnumerable<Productsubcategory>> Getcategorydetails(long Categorycode)
         {
             return Task.Run(() =>
             {

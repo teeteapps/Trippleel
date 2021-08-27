@@ -22,7 +22,7 @@ function addproductcategory() {
             type: "POST",
             dataType: 'json',
             success: function (result) {
-                setTimeout(function () { location.reload(); }, 3000);
+                setTimeout(function () { location.reload(); }, 1000);
                 if (result.code == 0) {
                     $("#productcategorymodal").hide();
                     toastr.success(result.msg);
@@ -38,12 +38,12 @@ function addproductcategory() {
     return false;
 }
 
-function productcategorydetails(productcategoryid) {
+function productcategorydetails(productcategoryid,Productcategoryname) {
     $("#productsubcategorydatacard").empty();
     $.ajax({
         url: "Getcategorydetails",
         data: {
-           categorycode: productcategoryid
+            categorycode: productcategoryid, Categoryname:Productcategoryname
         },
         type: "Get",
         dataType: 'html',
@@ -65,6 +65,7 @@ function addproductsubcategory() {
             type: "POST",
             dataType: 'json',
             success: function (result) {
+                setTimeout(function () { location.reload(); }, 1000);
                 if (result.code == 0) {
                     $("#productcategorymodal").hide();
                     toastr.success(result.msg);

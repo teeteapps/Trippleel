@@ -13,7 +13,7 @@ namespace DBL.Repositories
         #region product Category
         IEnumerable<Productcategory> Getproductcategorylist();
         GenericModel Addproductcategory(Productcategory entity);
-        Viewproductcategory Getcategorydetails(long Categorycode);
+        IEnumerable<Productsubcategory> Getcategorydetails(long Categorycode);
         GenericModel Addproductsubcategory(Productsubcategory entity);
         #endregion
     }
