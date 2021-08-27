@@ -43,7 +43,7 @@ namespace DBL.Repositories
             using (var connection = new SqlConnection(_connString))
             {
                 connection.Open();
-                return connection.Query<Productcategory>(FindStatement(Productcategory.TableName, "Categorycode"),new {id=Categorycode }).FirstOrDefault();
+                return connection.Query<Productcategory>(Getproductcategoryjson("Categorycode"),new {id=Categorycode }).FirstOrDefault();
             }
         }
         public GenericModel Addproductsubcategory(Productsubcategory entity)

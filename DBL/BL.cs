@@ -56,5 +56,17 @@ namespace DBL
         }
 
         #endregion
+
+        #region Product Attributes
+        public Task<IEnumerable<Attributes>> GetProductattributeslist()
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductattributesRepository.GetProductattributeslist();
+                return Resp;
+            });
+        }
+
+        #endregion
     }
 }

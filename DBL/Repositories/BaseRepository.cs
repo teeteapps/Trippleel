@@ -20,6 +20,16 @@ namespace DBL.Repositories
             return string.Format("Delete From {0} Where {1} = @Id", tableName, idColumn);
         }
 
+        public string FindStatement(string tableName, string idColumn)
+        {
+            return string.Format("Select * From {0} Where {1} = @Id", tableName, idColumn);
+        }
+        public string Getproductcategoryjson(string idColumn)
+        {
+            return string.Format("SELECT  (SELECT PC.Categorycode,PC.Categoryname, PS.Subcategorycode AS 'Subcategorycode'," +
+                " PS.Subcategoryname AS 'Subcategoryname' FROM Productcategory PC INNER JOIN Productsubcategory PS ON PC.Categorycode = PS.Categorycode " +
+                "WHERE PS.Categorycode = {0} FOR JSON AUTO, Without_Array_Wrapper) AS Productcategorydetails", idColumn);
+        }
         public string FindStatementraw(string tableName, string idColumn)
         {
             return string.Format("Select * From {0} Where {1} = @Id", tableName, idColumn);
@@ -27,10 +37,6 @@ namespace DBL.Repositories
         public string FindStatementOne(string tableName, string idColumn, string idColumnOne)
         {
             return string.Format("Select * From {0} Where {1} = @Id and {2} = @IdOne", tableName, idColumn, idColumnOne);
-        }
-        public string FindStatement(string tableName, string idColumn)
-        {
-            return string.Format("Select * From {0} Where {1} = @Id", tableName, idColumn);
         }
         public string FindStatement(string tableName, string idColumn, int top)
         {
