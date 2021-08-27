@@ -9,7 +9,8 @@ namespace DBL.Repositories
 {
     public interface IProductcategoryRepository
     {
-        #region
+        #region product Category
+        IEnumerable<Productcategory> Getproductcategorylist();
         GenericModel Addproductcategory(Productcategory entity);
         #endregion
     }

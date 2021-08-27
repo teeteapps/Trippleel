@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<DBL.Enitites.Productcategory>
 @{
     ViewData["Title"] = "Productcategorylist";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -18,11 +18,22 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped compact nowrap text-nowrap flex-nowrap table-sm font-weight-light" id="productcategorytable">
                     <thead>
-                        <tr></tr>
+                        <tr>
+                            <th class="font-weight-light">Category Name</th>
+                            <th class="float-right font-weight-light">Actions</th>
+                        </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="font-weight-light">@item.Categoryname</td>
+                                <td> <a href="#" class="btn btn-xs btn-danger float-right">Delete</a><a href="#" class="btn btn-xs btn-info float-right ml-1 mr-1">Edit</a><a href="#" class="btn btn-xs btn-info float-right">Details</a></td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -36,6 +47,28 @@
         </div>
     </div>
 </div>
-@section Scripts{ 
+@section Scripts{
+    <script src="~/lib/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/lib/plugins/toastr/toastr.min.js"></script>
     <script src="~/js/productcategory.js"></script>
+    <script src="~/lib/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/lib/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#productcategorytable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+       
+    </script>
 }

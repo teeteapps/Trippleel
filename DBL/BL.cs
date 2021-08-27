@@ -2,6 +2,7 @@
 using DBL.Enitites;
 using DBL.UOW;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -20,6 +21,15 @@ namespace DBL
         }
 
         #region  Product category
+        public Task<IEnumerable<Productcategory>> Getproductcategorylist()
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductcategoryRepository.Getproductcategorylist();
+                return Resp;
+            });
+        }
+
         public Task<GenericModel> Addproductcategory(Productcategory obj)
         {
             return Task.Run(() =>

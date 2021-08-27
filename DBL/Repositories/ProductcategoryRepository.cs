@@ -15,7 +15,15 @@ namespace DBL.Repositories
         public ProductcategoryRepository(string connectionString) : base(connectionString)
         {
         }
-        #region
+        #region Product Categories
+        public IEnumerable<Productcategory> Getproductcategorylist()
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                return connection.Query<Productcategory>(GetAllStatement(Productcategory.TableName)).ToList();
+            }
+        }
         public GenericModel Addproductcategory(Productcategory entity)
         {
             using (var connection = new SqlConnection(_connString))

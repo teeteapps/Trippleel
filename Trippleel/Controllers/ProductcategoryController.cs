@@ -16,9 +16,11 @@ namespace Trippleel.Controllers
         {
             bl = new BL(Util.ShareConnectionString.Value);
         }
-        public IActionResult Productcategorylist()
+        [HttpGet]
+        public async Task<IActionResult> Productcategorylist()
         {
-            return View();
+            var data = await bl.Getproductcategorylist();
+            return View(data);
         }
         [HttpGet]
         public IActionResult Addproductcategory()
