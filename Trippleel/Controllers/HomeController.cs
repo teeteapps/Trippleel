@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DBL;
+using DBL.Helpers;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,15 +12,15 @@ using Trippleel.Models;
 
 namespace Trippleel.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly BL bl;
+        EncryptDecrypt sec = new EncryptDecrypt();
+        public HomeController()
         {
-            _logger = logger;
+            bl = new BL(Util.ShareConnectionString.Value);
         }
-
         public IActionResult Index()
         {
             return View();

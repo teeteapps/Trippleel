@@ -42,7 +42,7 @@ namespace Trippleel
            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, x =>
            {
                x.AccessDeniedPath = "/Account/AccessDenied/";
-               x.LoginPath = "/Account/Loginuser/";
+               x.LoginPath = "/Account/Login/";
            });
             services.AddDetectionCore();
             services.AddMvc();
