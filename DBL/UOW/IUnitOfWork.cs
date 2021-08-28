@@ -12,5 +12,6 @@ namespace DBL.UOW
         ISecurityRepository SecurityRepository { get; }
         IProductcategoryRepository ProductcategoryRepository { get; }
         IProductattributesRepository ProductattributesRepository { get; }
+        IProductRepository ProductRepository { get; }
     }
 }

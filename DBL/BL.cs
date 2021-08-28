@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DBL.Enitites;
+using DBL.Enum;
 using DBL.Helpers;
 using DBL.Model;
 using DBL.UOW;
@@ -144,6 +145,17 @@ namespace DBL
             {
                 var Resp = db.ProductattributesRepository.Addproductattributevalues(obj);
                 return Resp;
+            });
+        }
+        #endregion
+
+
+        #region Other methods
+        public Task<IEnumerable<ListModel>> GetListModel(ListModelType listType)
+        {
+            return Task.Run(() =>
+            {
+                return db.ProductRepository.GetListModel(listType);
             });
         }
         #endregion

@@ -1,6 +1,8 @@
 ﻿using DBL;
+using DBL.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +25,26 @@ namespace Trippleel.Controllers
         [HttpGet]
         public IActionResult Addproduct()
         {
+            LoadParams();
             return PartialView("_Productspartial");
         }
+
+        #region Other methods
+        private void LoadParams()
+        {
+            var list = bl.GetListModel(ListModelType.productcategory).Result.Select(x => new SelectListItem
+            {
+                Text = x.Text,
+                Value = x.Value
+            }).ToList();
+            ViewData["productcategorylists"] = list;
+            list = bl.GetListModel(ListModelType.attributes).Result.Select(x => new SelectListItem
+            {
+                Text = x.Text,
+                Value = x.Value
+            }).ToList();
+            ViewData["attributeslists"] = list;
+        }
+        #endregion
     }
 }

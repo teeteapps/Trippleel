@@ -1,4 +1,9 @@
-﻿<div class="modal-header">
+﻿
+@{ 
+    var productcategory = ViewData["productcategorylists"] as List<SelectListItem>;
+    var productattribute = ViewData["attributeslists"] as List<SelectListItem>;
+}
+<div class="modal-header">
     <h5 class="text-sm modal-title font-weight-light" id="allpoliciesModalLabel">Products</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -9,8 +14,31 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                @*<label class="text-sm font-weight-light" asp-for="Categoryname"></label>
-                    <input asp-for="Categoryname" class="form-control form-control-sm" id="categorynameid" />*@
+                <label class="text-sm font-weight-light"></label>
+               <input  class="form-control form-control-sm" id="productnameid" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="text-sm font-weight-light"></label>
+                <select class="form-control form-control-sm" id="Prodsubcategory" asp-items="@productcategory">
+                    <option value="0">---Select Category---</option>
+                </select>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="text-sm font-weight-light"></label>
+                <select class="form-control form-control-sm" id="Prodsubcategory" asp-items="@productattribute">
+                    <option value="0">---Select Attribute---</option>
+                </select>
+                <span></span>
             </div>
         </div>
     </div>
