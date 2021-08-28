@@ -10,7 +10,15 @@ $('#producdatamodal').on('hidden.bs.modal', function () {
 });
 
 function loadproductsubcategory() {
-    alert("we are here");
+    $.ajax({
+        type: "POST", url: "Index.aspx/GetCountriesName", dataType: "json", contentType: "application/json", success: function (res) {
+            $.each(res.d, function (data, value) {
+
+                $("#ddlNationality").append($("<option></option>").val(value.CountryId).html(value.CountryName));
+            })
+        }
+
+    });
 }
 
 function loadproductattribute() {
