@@ -158,6 +158,13 @@ namespace DBL
                 return db.ProductRepository.GetListModel(listType);
             });
         }
+        public Task<IEnumerable<ListModel>> GetListModelbycode(long Code,ListModelType listType)
+        {
+            return Task.Run(() =>
+            {
+                return db.ProductRepository.GetListModelbycode(Code,listType);
+            });
+        }
         #endregion
     }
 }

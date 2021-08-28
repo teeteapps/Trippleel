@@ -12,6 +12,7 @@ namespace DBL.Repositories
     {
         #region Other methods
         IEnumerable<ListModel> GetListModel(ListModelType listType);
+        IEnumerable<ListModel> GetListModelbycode(long Code, ListModelType listType);
         #endregion
     }
 }

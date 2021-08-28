@@ -24,8 +24,17 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label class="text-sm font-weight-light"></label>
-                <select class="form-control form-control-sm" id="Prodsubcategory" asp-items="@productcategory">
+                <select class="form-control form-control-sm" id="prodcategory" onchange="loadproductsubcategory()" asp-items="@productcategory">
                     <option value="0">---Select Category---</option>
+                </select>
+                <span></span>
+            </div>
+        </div>
+        <div class="col-sm-6" style="display:none">
+            <div class="form-group">
+                <label class="text-sm font-weight-light"></label>
+                <select class="form-control form-control-sm" id="prodsubcategory">
+                    <option value="0">---Select Subcategory---</option>
                 </select>
                 <span></span>
             </div>
@@ -35,8 +44,17 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label class="text-sm font-weight-light"></label>
-                <select class="form-control form-control-sm" id="Prodsubcategory" asp-items="@productattribute">
+                <select class="form-control form-control-sm" id="prodattribute" onchange="loadproductattribute()" asp-items="@productattribute">
                     <option value="0">---Select Attribute---</option>
+                </select>
+                <span></span>
+            </div>
+        </div>
+        <div class="col-sm-6" style="display:none">
+            <div class="form-group">
+                <label class="text-sm font-weight-light"></label>
+                <select class="form-control form-control-sm" id="prodattributevalues">
+                    <option value="0">---Select Attributevalues---</option>
                 </select>
                 <span></span>
             </div>

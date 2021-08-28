@@ -29,6 +29,19 @@ namespace DBL.Repositories
                 return connection.Query<ListModel>("Usp_GetListModel", parameters, commandType: CommandType.StoredProcedure).ToList();
             }
         }
+        public IEnumerable<ListModel> GetListModelbycode(long Code,ListModelType listType)
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Code", Code);
+                parameters.Add("@Type", (int)listType);
+
+                return connection.Query<ListModel>("Usp_GetListModelbycode", parameters, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
         #endregion
     }
 }

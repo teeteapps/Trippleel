@@ -9,3 +9,10 @@ $('#producdatamodal').on('hidden.bs.modal', function () {
     $('#producdatamodal .modal-content').empty();
 });
 
+function loadproductsubcategory() {
+    alert("we are here");
+}
+
+function loadproductattribute() {
+    alert("we are here too");
+}
