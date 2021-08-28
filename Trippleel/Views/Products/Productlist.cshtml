@@ -1,0 +1,181 @@
+﻿@*@model IEnumerable<DBL.Enitites.Attributes>*@
+@{
+    ViewData["Title"] = "Productlist";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <h5 class="font-weight-light text-sm">Products</h5>
+                    </div>
+                    <div class="col-sm-5">
+                        <a asp-action="Addproduct" asp-controller="Products" class="btn btn-xs btn-info float-right" data-target="#producdatamodal" data-toggle="modal">Add Product</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped compact nowrap text-nowrap flex-nowrap table-sm font-weight-light" id="productdatatable">
+                    <thead>
+                        <tr>
+                            <th class="font-weight-light">Attribute Name</th>
+                            <th class="float-right font-weight-light">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*@foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="font-weight-light">@item.Attributename</td>
+                                    <td> <a href="#" class="btn btn-xs btn-danger float-right">Delete</a><a href="#" class="btn btn-xs btn-info float-right ml-1 mr-1">Edit</a><a href="#" class="btn btn-xs btn-info float-right" onclick="productattributedetails('@item.Attributecode','@item.Attributename')">Details</a></td>
+                                </tr>
+                            }*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="producdatamodal" tabindex="-1" role="dialog" aria-labelledby="producdatamodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/products.js"></script>
+    <script src="~/lib/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/lib/plugins/toastr/toastr.min.js"></script>
+    <script src="~/lib/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/lib/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/lib/smartwizard/dist/js/jquery.smartWizard.min.js"></script>>
+    <script>
+        $(document).ready(function () {
+            $('#productdatatable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+
+
+            // Toolbar extra buttons
+            var btnFinish = $('<button></button>').text('Finish')
+                .addClass('btn btn-info')
+                .on('click', function () { alert('Finish Clicked'); });
+            var btnCancel = $('<button></button>').text('Cancel')
+                .addClass('btn btn-danger')
+                .on('click', function () { $('#smartwizard').smartWizard("reset"); });
+
+            // Step show event
+            $("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+                $("#prev-btn").removeClass('disabled');
+                $("#next-btn").removeClass('disabled');
+                if (stepPosition === 'first') {
+                    $("#prev-btn").addClass('disabled');
+                } else if (stepPosition === 'last') {
+                    $("#next-btn").addClass('disabled');
+                } else {
+                    $("#prev-btn").removeClass('disabled');
+                    $("#next-btn").removeClass('disabled');
+                }
+            });
+
+            // Smart Wizard
+            $('#smartwizard').smartWizard({
+                selected: 0,
+                theme: 'arrows', // default, arrows, dots, progress
+                // darkMode: true,
+                transition: {
+                    animation: 'slide-horizontal', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
+                },
+                toolbarSettings: {
+                    toolbarPosition: 'both', // both bottom
+                    toolbarExtraButtons: [btnFinish, btnCancel]
+                }
+            });
+
+            // External Button Events
+            $("#reset-btn").on("click", function () {
+                // Reset wizard
+                $('#smartwizard').smartWizard("reset");
+                return true;
+            });
+
+            $("#prev-btn").on("click", function () {
+                // Navigate previous
+                $('#smartwizard').smartWizard("prev");
+                return true;
+            });
+
+            $("#next-btn").on("click", function () {
+                // Navigate next
+                $('#smartwizard').smartWizard("next");
+                return true;
+            });
+
+
+            // Demo Button Events
+            $("#got_to_step").on("change", function () {
+                // Go to step
+                var step_index = $(this).val() - 1;
+                $('#smartwizard').smartWizard("goToStep", step_index);
+                return true;
+            });
+
+
+            $("#dark_mode").on("click", function () {
+                // Change dark mode
+                var options = {
+                    darkMode: $(this).prop("checked")
+                };
+
+                $('#smartwizard').smartWizard("setOptions", options);
+                return true;
+            });
+
+            $("#is_justified").on("click", function () {
+                // Change Justify
+                var options = {
+                    justified: $(this).prop("checked")
+                };
+
+                $('#smartwizard').smartWizard("setOptions", options);
+                return true;
+            });
+
+            $("#animation").on("change", function () {
+                // Change theme
+                var options = {
+                    transition: {
+                        animation: $(this).val()
+                    },
+                };
+                $('#smartwizard').smartWizard("setOptions", options);
+                return true;
+            });
+
+            $("#theme_selector").on("change", function () {
+                // Change theme
+                var options = {
+                    theme: $(this).val()
+                };
+                $('#smartwizard').smartWizard("setOptions", options);
+                return true;
+            });
+        });
+
+    </script>
+}
