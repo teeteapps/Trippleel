@@ -22,7 +22,7 @@ function addproductattribute() {
             type: "POST",
             dataType: 'json',
             success: function (result) {
-                setTimeout(function () { location.reload(); }, 3000);
+                setTimeout(function () { location.reload(); }, 1000);
                 if (result.code == 0) {
                     $("#productattributesmodal").hide();
                     toastr.success(result.msg);
@@ -38,12 +38,12 @@ function addproductattribute() {
     return false;
 }
 
-function productcategorydetails(productcategoryid) {
+function productattributedetails(productattributeid, productattributename) {
     $("#productattributevaluesdatacard").empty();
     $.ajax({
         url: "Getattributedetails",
         data: {
-            categorycode: productcategoryid
+            Attributecode: productattributeid, Attributename: productattributename
         },
         type: "Get",
         dataType: 'html',
@@ -65,6 +65,7 @@ function addattributevalues() {
             type: "POST",
             dataType: 'json',
             success: function (result) {
+                setTimeout(function () { location.reload(); }, 1000);
                 if (result.code == 0) {
                     $("#productattributesmodal").hide();
                     toastr.success(result.msg);
