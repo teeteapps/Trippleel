@@ -28,12 +28,12 @@ namespace Trippleel.Controllers
             LoadParams();
             return PartialView("_Productspartial");
         }
-        [HttpGet]
         public async Task<IActionResult> GetListModelbycode(long Categorycode, ListModelType Categoryname)
         {
             var data = await bl.GetListModelbycode(Categorycode, Categoryname);
             return PartialView("_Productspartial");
         }
+        [HttpGet]
 
         #region Other methods
         private void LoadParams()

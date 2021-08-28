@@ -9,6 +9,7 @@ namespace DBL.Enum
     public enum ListModelType
     {
         productcategory = 0,
-        attributes=1
+        attributes=1,
+        attributevalue=2
     }
 }
