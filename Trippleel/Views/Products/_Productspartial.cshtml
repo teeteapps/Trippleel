@@ -1,4 +1,4 @@
-﻿
+﻿@model DBL.Enitites.Products
 @{ 
     var productcategory = ViewData["productcategorylists"] as List<SelectListItem>;
     var productattribute = ViewData["attributeslists"] as List<SelectListItem>;
@@ -14,8 +14,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <label class="text-sm font-weight-light"></label>
-               <input  class="form-control form-control-sm" id="productnameid" />
+                <label class="text-sm font-weight-light" asp-for="Productname"></label>
+               <input  class="form-control form-control-sm" asp-for="Productname" id="productnameid" />
             </div>
         </div>
     </div>

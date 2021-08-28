@@ -10,6 +10,7 @@ $('#producdatamodal').on('hidden.bs.modal', function () {
 });
 
 function loadproductsubcategory() {
+    alert("alert here");
     $.ajax({
         type: "POST", url: "Index.aspx/GetCountriesName", dataType: "json", contentType: "application/json", success: function (res) {
             $.each(res.d, function (data, value) {
