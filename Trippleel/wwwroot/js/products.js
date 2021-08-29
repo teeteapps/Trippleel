@@ -79,3 +79,32 @@ function loadproductattribute() {
         });
     }
 }
+function addproductsdata() {
+    $.ajax({
+        url: "Addproductsdata",
+        data: {
+            Attributename: $("#productnameid").val(),
+            Attributename: $("#prodcategory").val(),
+            Attributename: $("#prodsubcategoryId").val(),
+            Attributename: $("#hasattributeid").val(),
+            Attributename: $("#prodattribute").val(),
+            Attributename: $("#prodattributevaluesid").val(),
+            Attributename: $("#prodcolorId").val()
+        },
+        type: "POST",
+        dataType: 'json',
+        success: function (result) {
+            setTimeout(function () { location.reload(); }, 1000);
+            if (result.code == 0) {
+                $("#productattributesmodal").hide();
+                toastr.success(result.msg);
+            } else if (result.code == 1) {
+                toastr.danger(result.msg);
+            } else {
+                toastr.danger('Database error occured. Kindly contact admin!');
+            }
+            $("#attributenameid").val("");
+        }
+    });
+    return false;
+}

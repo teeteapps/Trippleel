@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DBL.Enitites;
 using DBL.Enum;
 using DBL.Model;
 using System;
@@ -16,6 +17,25 @@ namespace DBL.Repositories
         public ProductRepository(string connectionString) : base(connectionString)
         {
         }
+
+        #region Product
+        public GenericModel Addproductsdata(Products entity)
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Productname", entity.Productname);
+                parameters.Add("@Createdby", entity.Createdby);
+                parameters.Add("@Modifiedby", entity.Modifiedby);
+                parameters.Add("@Datecreated", entity.Datecreated);
+                parameters.Add("@Datemodified", entity.Datemodified);
+                return connection.Query<GenericModel>("Usp_Addproductsdata", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
+        #endregion
+
+
         #region Other Methods
         public IEnumerable<ListModel> GetListModel(ListModelType listType)
         {

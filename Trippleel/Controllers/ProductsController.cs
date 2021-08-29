@@ -1,4 +1,5 @@
 ﻿using DBL;
+using DBL.Enitites;
 using DBL.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,21 @@ namespace Trippleel.Controllers
             LoadParams();
             return PartialView("_Productspartial");
         }
+
+        [HttpPost]
+        public async Task<JsonResult> Addproductsdata(Products model)
+        {
+            model.Createdby = SessionUserData.Staffcode;
+            model.Modifiedby = SessionUserData.Staffcode;
+            model.Datecreated = DateTime.Now;
+            model.Datemodified = DateTime.Now;
+            var resp = await bl.Addproductsdata(model);
+            return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
+        }
+
+
+
+
         [HttpGet]
         public async Task<JsonResult> GetListModelbycode(long Valcode, ListModelType Name)
         {

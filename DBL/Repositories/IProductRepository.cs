@@ -1,4 +1,5 @@
-﻿using DBL.Enum;
+﻿using DBL.Enitites;
+using DBL.Enum;
 using DBL.Model;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,11 @@ namespace DBL.Repositories
 {
     public interface IProductRepository
     {
+        #region Products
+        GenericModel Addproductsdata(Products entity);
+        #endregion
+
+
         #region Other methods
         IEnumerable<ListModel> GetListModel(ListModelType listType);
         IEnumerable<ListModel> GetListModelbycode(long Code, ListModelType listType);

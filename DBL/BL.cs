@@ -149,6 +149,17 @@ namespace DBL
         }
         #endregion
 
+        #region Products
+        public Task<GenericModel> Addproductsdata(Products obj)
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductRepository.Addproductsdata(obj);
+                return Resp;
+            });
+        }
+        #endregion
+
 
         #region Other methods
         public Task<IEnumerable<ListModel>> GetListModel(ListModelType listType)
