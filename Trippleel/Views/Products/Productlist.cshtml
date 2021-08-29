@@ -51,6 +51,7 @@
     </div>
     @section Scripts{
         <script src="~/js/products.js"></script>
+        <script src="~/lib/plugins/select2/js/select2.full.min.js"></script>
         <script src="~/lib/plugins/sweetalert2/sweetalert2.min.js"></script>
         <script src="~/lib/plugins/toastr/toastr.min.js"></script>
         <script src="~/lib/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -58,8 +59,14 @@
         <script src="~/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
         <script src="~/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
         <script src="~/lib/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/lib/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 
         <script>
+            $(function () {
+                $('.select2').select2();
+            });
+            
+
             $(document).ready(function () {
                 $('#productdatatable').DataTable({
                     "paging": true,

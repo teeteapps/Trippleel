@@ -36,8 +36,8 @@ function loadifhasattribute() {
 
 function loadproductattribute() {
     $("#prodattributevaluesid").empty();
+    $("#prodcolorId").empty();
     if ($("#prodattribute option:selected").text() == "Size") {
-        alert($("#prodattribute option:selected").text());
         $.ajax({
             type: 'GET',
             url: 'GetListModelbycode',
@@ -64,6 +64,7 @@ function loadproductattribute() {
             }
         });
     } else {
+        $("#productcolorrowid").hide();
         $.ajax({
             type: 'GET',
             url: 'GetListModelbycode',
