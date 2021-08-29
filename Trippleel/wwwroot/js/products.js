@@ -8,6 +8,15 @@ $('#producdatamodal').on('hidden.bs.modal', function () {
     $(this).removeData('bs.modal');
     $('#producdatamodal .modal-content').empty();
 });
+
+$('#producdatamodal').modalSteps({
+  btnCancelHtml: "Cancel",
+  btnPreviousHtml: "Previous",
+  btnNextHtml: "Next",
+  btnLastStepHtml: "Complete",
+  disableNextButton: false
+});
+
 function loadproductsubcategory() {
     $("#prodsubcategoryId").empty();
 
