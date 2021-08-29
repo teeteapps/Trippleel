@@ -30,10 +30,10 @@
                 <span></span>
             </div>
         </div>
-        <div class="col-sm-6" style="display:none">
+        <div class="col-sm-6" id="productsubcategoryrowid" style="display:none">
             <div class="form-group">
                 <label class="text-sm font-weight-light"></label>
-                <select class="form-control form-control-sm" id="prodsubcategory">
+                <select class="form-control form-control-sm" id="prodsubcategoryId">
                     <option value="0">---Select Subcategory---</option>
                 </select>
                 <span></span>
@@ -41,6 +41,16 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-sm-12">
+            Has Attributes ?
+            <select class="form-control form-control-sm" id="hasattributeid" onchange="loadifhasattribute()">
+                <option value="0">---Choose here---</option>
+                <option value="1">Yes</option>
+                <option value="2">No</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" id="Attributesrowid" style="display:none;">
         <div class="col-sm-6">
             <div class="form-group">
                 <label class="text-sm font-weight-light"></label>
@@ -50,17 +60,29 @@
                 <span></span>
             </div>
         </div>
-        <div class="col-sm-6" style="display:none">
+        <div class="col-sm-6" id="prodattributevaluesrowid" style="display:none">
             <div class="form-group">
                 <label class="text-sm font-weight-light"></label>
-                <select class="form-control form-control-sm" id="prodattributevalues">
+                <select class="form-control form-control-sm" id="prodattributevaluesid">
                     <option value="0">---Select Attributevalues---</option>
                 </select>
                 <span></span>
             </div>
         </div>
     </div>
+    <div class="row" id="productcolorrowid" style="display:none;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label class="text-sm font-weight-light"></label>
+                <select class="form-control form-control-sm" id="prodcolorId">
+                    <option value="0">---Select Color---</option>
+                </select>
+                <span></span>
+            </div>
+        </div>
+    </div>
 </div>
+
 <div class="modal-footer">
     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
     <input type="submit" onclick="addproducts()" class="btn btn-sm btn-info" value="Save">

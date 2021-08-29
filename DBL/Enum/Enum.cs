@@ -10,6 +10,8 @@ namespace DBL.Enum
     {
         productcategory = 0,
         attributes=1,
-        attributevalue=2
+        subcategory = 2,
+        attributevalue =3,
+        colors=4
     }
 }

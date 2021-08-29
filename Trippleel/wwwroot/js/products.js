@@ -8,22 +8,73 @@ $('#producdatamodal').on('hidden.bs.modal', function () {
     $(this).removeData('bs.modal');
     $('#producdatamodal .modal-content').empty();
 });
-
 function loadproductsubcategory() {
-    alert("alert here");
+    $("#prodsubcategoryId").empty();
+
     $.ajax({
-        type: "GET", url: "GetListModelbycode", data: {
-            Categorycode: $("#prodcategory").val(), Categoryname:"attributevalue"
-        }, dataType: "json", contentType: "application/json", success: function (res) {
-            $.each(res.d, function (data, value) {
-
-                $("#ddlNationality").append($("<option></option>").val(value.CountryId).html(value.CountryName));
-            })
+        type: "GET",
+        url: "GetListModelbycode",
+        data: { Valcode: $("#prodcategory").val(), Name: "subcategory" },
+        dataType: "json",
+        contentType: "application/json",
+        success: function (subcategories) {
+            $("#productsubcategoryrowid").show();
+            $.each(subcategories, function (i, subcategory) {
+                $("#prodsubcategoryId").append('<option value="' + subcategory.value + '">' + subcategory.text + '</option>');
+            });
         }
-
     });
 }
 
+function loadifhasattribute() {
+    if ($("#hasattributeid").val() == 1) {
+        $("#Attributesrowid").show();
+    } else {
+        $("#Attributesrowid").hide();
+    }
+}
+
 function loadproductattribute() {
-    alert("we are here too");
+    $("#prodattributevaluesid").empty();
+    if ($("#prodattribute option:selected").text() == "Size") {
+        alert($("#prodattribute option:selected").text());
+        $.ajax({
+            type: 'GET',
+            url: 'GetListModelbycode',
+            dataType: 'json',
+            data: { Valcode: 0, Name: "colors" },
+            success: function (attributecolors) {
+                $("#productcolorrowid").show();
+                $.each(attributecolors, function (i, attributecolor) {
+                    $("#prodcolorId").append('<option value="' + attributecolor.value + '">' + attributecolor.text + '</option>');
+                });
+            }
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: 'GetListModelbycode',
+            dataType: 'json',
+            data: { Valcode: $("#prodattribute").val(), Name: "attributevalue" },
+            success: function (attributevalues) {
+                $("#prodattributevaluesrowid").show();
+                $.each(attributevalues, function (i, attributevalue) {
+                    $("#prodattributevaluesid").append('<option value="' + attributevalue.value + '">' + attributevalue.text + '</option>');
+                });
+            }
+        });
+    } else {
+        $.ajax({
+            type: 'GET',
+            url: 'GetListModelbycode',
+            dataType: 'json',
+            data: { Valcode: $("#prodattribute").val(), Name: "attributevalue" },
+            success: function (attributevalues) {
+                $("#prodattributevaluesrowid").show();
+                $.each(attributevalues, function (i, attributevalue) {
+                    $("#prodattributevaluesid").append('<option value="' + attributevalue.value + '">' + attributevalue.text + '</option>');
+                });
+            }
+        });
+    }
 }
