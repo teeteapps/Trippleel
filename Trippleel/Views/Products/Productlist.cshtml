@@ -27,12 +27,12 @@
                     </thead>
                     <tbody>
                         @*@foreach (var item in Model)
-                        {
-                            <tr>
-                                <td class="font-weight-light">@item.Attributename</td>
-                                <td> <a href="#" class="btn btn-xs btn-danger float-right">Delete</a><a href="#" class="btn btn-xs btn-info float-right ml-1 mr-1">Edit</a><a href="#" class="btn btn-xs btn-info float-right" onclick="productattributedetails('@item.Attributecode','@item.Attributename')">Details</a></td>
-                            </tr>
-                        }*@
+                            {
+                                <tr>
+                                    <td class="font-weight-light">@item.Attributename</td>
+                                    <td> <a href="#" class="btn btn-xs btn-danger float-right">Delete</a><a href="#" class="btn btn-xs btn-info float-right ml-1 mr-1">Edit</a><a href="#" class="btn btn-xs btn-info float-right" onclick="productattributedetails('@item.Attributecode','@item.Attributename')">Details</a></td>
+                                </tr>
+                            }*@
                     </tbody>
                 </table>
             </div>
@@ -40,44 +40,59 @@
     </div>
 </div>
 
-
-    <div class="modal fade mt-5 multi-step" id="producdatamodal" tabindex="-1" role="dialog" aria-labelledby="producdatamodalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
+<div class="modal fade" id="producdatamodal" tabindex="-1" role="dialog" aria-labelledby="producdatamodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="producdatamodalLabel">Products Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body" id="smartwizard">
+                <ul>
+                    <li><a href="#step-1">Step 1<br /><small>Product Info</small></a></li>
+                    <li><a href="#step-2">Step 2<br /><small>Product attributes Info</small></a></li>
+                    <li><a href="#step-3">Step 3<br /><small>Payment Info</small></a></li>
+                    <li><a href="#step-4">Step 4<br /><small>Confirm details</small></a></li>
+                </ul>
+                <div class="modalcontentdata"></div>
             </div>
         </div>
-
     </div>
-    @section Scripts{
-        <script src="~/js/products.js"></script>
-        <script src="~/lib/plugins/select2/js/select2.full.min.js"></script>
-        <script src="~/lib/plugins/sweetalert2/sweetalert2.min.js"></script>
-        <script src="~/lib/plugins/toastr/toastr.min.js"></script>
-        <script src="~/lib/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="~/lib/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="~/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="~/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-        <script src="~/lib/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="~/lib/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+</div>
 
-        <script>
-            $(function () {
-                $('.select2').select2();
+@section Scripts{
+    <script src="~/js/products.js"></script>
+    <script src="~/lib/plugins/select2/js/select2.full.min.js"></script>
+    <script src="~/lib/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/lib/plugins/toastr/toastr.min.js"></script>
+    <script src="~/lib/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/lib/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#productdatatable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
             });
-            
+            $('#smartwizard').smartWizard({
+                selected: 0,
+                theme: 'arrows',
+                autoAdjustHeight: true,
+                transitionEffect: 'fade',
+                showStepURLhash: false,
 
-            $(document).ready(function () {
-                $('#productdatatable').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false,
-                    "responsive": true,
-                });
             });
+        });
 
-        </script>
-    }
+    </script>
+}

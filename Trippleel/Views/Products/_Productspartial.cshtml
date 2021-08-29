@@ -3,14 +3,7 @@
     var productcategory = ViewData["productcategorylists"] as List<SelectListItem>;
     var productattribute = ViewData["attributeslists"] as List<SelectListItem>;
 }
-
-<div class="modal-header">
-    <h5 class="text-sm modal-title font-weight-light" id="allpoliciesModalLabel">Products</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<div class="modal-body">
+<div id="step-1">
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
@@ -19,7 +12,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
@@ -82,8 +74,51 @@
         </div>
     </div>
 </div>
-
-<div class="modal-footer">
-    @*<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>*@
-    <input type="submit" onclick="addproductsdata()" class="btn btn-sm btn-info" value="Next">
+<div id="step-2" class="mt-3">
+    <div class="row" id="Attributesrowid" style="display:none;">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="text-sm font-weight-light"></label>
+                <select class="form-control form-control-sm" id="prodattribute" onchange="loadproductattribute()" asp-items="@productattribute">
+                    <option value="0">---Select Attribute---</option>
+                </select>
+                <span></span>
+            </div>
+        </div>
+        <div class="col-sm-6" id="prodattributevaluesrowid" style="display:none">
+            <div class="form-group">
+                <label class="text-sm font-weight-light"></label>
+                <select class="form-control form-control-sm select2" multiple="multiple" id="prodattributevaluesid">
+                    <option value="0">---Select Attributevalues---</option>
+                </select>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="productcolorrowid" style="display:none;">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label class="text-sm font-weight-light"></label>
+                <select class="form-control form-control-sm select2" multiple="multiple" id="prodcolorId">
+                    <option value="0">---Select Color---</option>
+                </select>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="step-3" class="mt-3">
+    <div class="row">
+        <div class="col-md-6"> <input type="text" class="form-control" placeholder="Card Number" required> </div>
+        <div class="col-md-6"> <input type="text" class="form-control" placeholder="Card Holder Name" required> </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-6"> <input type="text" class="form-control" placeholder="CVV" required> </div>
+        <div class="col-md-6"> <input type="text" class="form-control" placeholder="Mobile Number" required> </div>
+    </div>
+</div>
+<div id="step-4" class="">
+    <div class="row">
+        <div class="col-md-12"> <span>Thanks For submitting your details with BBBootstrap.com. we will send you a confirmation email. We will review your details and revert back.</span> </div>
+    </div>
 </div>
