@@ -40,23 +40,9 @@
     </div>
 </div>
 
-<div class="modal fade" id="producdatamodal" tabindex="-1" role="dialog" aria-labelledby="producdatamodalLabel" aria-hidden="true">
-    <div class="modal-dialog modal modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="producdatamodalLabel">Products Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-            </div>
-            <div class="modal-body" id="smartwizard">
-                <ul>
-                    <li><a href="#step-1">Step 1<br /><small>Product Info</small></a></li>
-                    <li><a href="#step-2">Step 2<br /><small>Product attributes Info</small></a></li>
-                    <li><a href="#step-3">Step 3<br /><small>Payment Info</small></a></li>
-                    <li><a href="#step-4">Step 4<br /><small>Confirm details</small></a></li>
-                </ul>
-                <div class="modalcontentdata"></div>
-            </div>
-        </div>
+<div class="modal fade mt-5" id="producdatamodal" tabindex="-1" role="dialog" aria-labelledby="producdatamodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
     </div>
 </div>
 
@@ -70,10 +56,9 @@
     <script src="~/lib/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="~/lib/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="~/lib/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
+    <script src="~/lib/plugins/bs-stepper/js/bs-stepper.min.js"></script>
 
     <script>
-
         $(document).ready(function () {
             $('#productdatatable').DataTable({
                 "paging": true,
@@ -84,15 +69,6 @@
                 "autoWidth": false,
                 "responsive": true,
             });
-            $('#smartwizard').smartWizard({
-                selected: 0,
-                theme: 'arrows',
-                autoAdjustHeight: true,
-                transitionEffect: 'fade',
-                showStepURLhash: false,
-
-            });
         });
-
     </script>
 }
