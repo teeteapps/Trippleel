@@ -9,13 +9,6 @@ $('#producdatamodal').on('hidden.bs.modal', function () {
     $('#producdatamodal .modal-content').empty();
 });
 
-$('#producdatamodal').modalSteps({
-  btnCancelHtml: "Cancel",
-  btnPreviousHtml: "Previous",
-  btnNextHtml: "Next",
-  btnLastStepHtml: "Complete",
-  disableNextButton: false
-});
 
 function loadproductsubcategory() {
     $("#prodsubcategoryId").empty();
