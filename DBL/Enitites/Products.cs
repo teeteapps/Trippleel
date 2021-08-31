@@ -12,7 +12,7 @@ namespace DBL.Enitites
         public long Categorycode { get; set; }
         public long Subcategorycode { get; set; }
         public bool Hasattributes { get; set; }
-        public List<long> Productattribute { get; set; }
+        public long Productattributecode { get; set; }
         public List<long> Productattributevaluecode { get; set; }
         public List<long> Productcolorcode { get; set; }
         public long Createdby { get; set; }

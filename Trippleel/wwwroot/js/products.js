@@ -79,26 +79,21 @@ function loadproductattribute() {
         });
     }
 }
-function Addproductsdata() {
-    alert('we are here');
-}
 
-
-function Addproductsdataone() {
-    alert('we are here');
+function addproductsdata() {
     var productdata = {
         Productname: $("#productnameid").val(),
         Categorycode: $("#prodcategory").val(),
         Subcategorycode: $("#prodsubcategoryId").val(),
         Hasattributes: $("#hasattributeid").val(),
-        Productattribute: { Id: $("#prodattribute").val() },
+        Productattributecode: $("#prodattribute").val(),
         Productattributevaluecode: { Id: $("#prodattributevaluesid").val() },
         Productcolorcode: { Id: $("#prodcolorId").val() }
     };
     alert(JSON.stringify(productdata));
     return false;
     $.ajax({
-        url: "Addproductsdata",
+        url: "Addproducts",
         data: productdata,
         type: "POST",
         dataType: 'json',
