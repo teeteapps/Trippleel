@@ -81,19 +81,17 @@ function loadproductattribute() {
 }
 
 function addproductsdata() {
-    var productdata = {
-        Productname: $("#productnameid").val(),
-        Categorycode: $("#prodcategory").val(),
-        Subcategorycode: $("#prodsubcategoryId").val(),
-        Hasattributes: $("#hasattributeid").val(),
-        Productattributecode: $("#prodattribute").val(),
-        Productattributevaluecode: { Id: $("#prodattributevaluesid").val() },
-        Productcolorcode: { Id: $("#prodcolorId").val() }
-    };
-    alert(JSON.stringify(productdata));
     $.ajax({
         url: "Addproducts",
-        data: JSON.stringify(productdata),
+        data: {
+            Productname: $("#productnameid").val(),
+            Categorycode: $("#prodcategory").val(),
+            Subcategorycode: $("#prodsubcategoryId").val(),
+            Hasattributes: $("#hasattributeid").val(),
+            Productattributecode: $("#prodattribute").val(),
+            Productattributevaluecode: { Id: $("#prodattributevaluesid").val() },
+            Productcolorcode: { Id: $("#prodcolorId").val() }
+        },
         type: "POST",
         dataType: 'json',
         success: function (result) {
