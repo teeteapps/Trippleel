@@ -41,9 +41,6 @@ namespace Trippleel.Controllers
             return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
         }
 
-
-
-
         [HttpGet]
         public async Task<JsonResult> GetListModelbycode(long Valcode, ListModelType Name)
         {

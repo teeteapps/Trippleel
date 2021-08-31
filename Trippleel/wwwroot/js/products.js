@@ -91,10 +91,9 @@ function addproductsdata() {
         Productcolorcode: { Id: $("#prodcolorId").val() }
     };
     alert(JSON.stringify(productdata));
-    return false;
     $.ajax({
         url: "Addproducts",
-        data: productdata,
+        data: JSON.stringify(productdata),
         type: "POST",
         dataType: 'json',
         success: function (result) {
