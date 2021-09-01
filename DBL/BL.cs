@@ -154,6 +154,14 @@ namespace DBL
         {
             return Task.Run(() =>
             {
+                if (obj.Productcolorcode != null)
+                {
+                    obj.Productcolorcodedata = string.Join(",",obj.Productcolorcode);
+                }
+                if (obj.Productattributevaluecode!=null)
+                {
+                    obj.Productattributevaluecodedata = string.Join(",",obj.Productattributevaluecode);
+                }
                 var Resp = db.ProductRepository.Addproductsdata(obj);
                 return Resp;
             });

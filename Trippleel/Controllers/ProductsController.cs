@@ -33,6 +33,7 @@ namespace Trippleel.Controllers
         [HttpPost]
         public async Task<JsonResult> Addproducts(Products model)
         {
+
             model.Createdby = SessionUserData.Staffcode;
             model.Modifiedby = SessionUserData.Staffcode;
             model.Datecreated = DateTime.Now;

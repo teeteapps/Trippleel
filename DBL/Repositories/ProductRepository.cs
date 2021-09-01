@@ -25,7 +25,14 @@ namespace DBL.Repositories
             {
                 connection.Open();
                 DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Accountcode", entity.Accountcode);
                 parameters.Add("@Productname", entity.Productname);
+                parameters.Add("@Categorycode", entity.Categorycode);
+                parameters.Add("@Subcategorycode", entity.Subcategorycode);
+                parameters.Add("@Hasattributes", entity.Hasattributes);
+                parameters.Add("@Productattributecode", entity.Productattributecode);
+                parameters.Add("@Productattributevaluecode",entity.Productattributevaluecodedata);
+                parameters.Add("@Productcolorcode", entity.Productcolorcodedata);
                 parameters.Add("@Createdby", entity.Createdby);
                 parameters.Add("@Modifiedby", entity.Modifiedby);
                 parameters.Add("@Datecreated", entity.Datecreated);
