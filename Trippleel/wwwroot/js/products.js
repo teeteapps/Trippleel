@@ -85,7 +85,7 @@ function addproductsdata() {
         Productname: $("#productnameid").val(),
         Categorycode: $("#prodcategory").val(),
         Subcategorycode: $("#prodsubcategoryId").val(),
-        Hasattributes: $("#hasattributeid").val(),
+        Hasattributedata: $("#hasattributeid").val(),
         Productattributecode: $("#prodattribute").val(),
         Productattributevaluecode: $("#prodattributevaluesid").val(),
         Productcolorcode: $("#prodcolorId").val()
@@ -97,7 +97,7 @@ function addproductsdata() {
             Productname: $("#productnameid").val(),
             Categorycode: $("#prodcategory").val(),
             Subcategorycode: $("#prodsubcategoryId").val(),
-            Hasattributes: $("#hasattributeid").val(),
+            Hasattributedata: $("#hasattributeid").val(),
             Productattributecode: $("#prodattribute").val(),
             Productattributevaluecode: $("#prodattributevaluesid").val(),
             Productcolorcode: $("#prodcolorId").val()},

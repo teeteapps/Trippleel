@@ -34,6 +34,7 @@ namespace Trippleel.Controllers
         public async Task<JsonResult> Addproducts(Products model)
         {
 
+            model.Accountcode = SessionUserData.Staffcode;
             model.Createdby = SessionUserData.Staffcode;
             model.Modifiedby = SessionUserData.Staffcode;
             model.Datecreated = DateTime.Now;

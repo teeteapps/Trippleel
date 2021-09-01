@@ -154,6 +154,14 @@ namespace DBL
         {
             return Task.Run(() =>
             {
+                if (obj.Hasattributedata==1)
+                {
+                    obj.Hasattributes = true;
+                }
+                else
+                {
+                    obj.Hasattributes = false;
+                }
                 if (obj.Productcolorcode != null)
                 {
                     obj.Productcolorcodedata = string.Join(",",obj.Productcolorcode);
