@@ -43,7 +43,33 @@ namespace Trippleel.Controllers
             var resp = await bl.Addproductsdata(model);
             return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
         }
-
+        [HttpGet]
+        public IActionResult Editproductvariationfiels(long Variationcode,string Variationname,string Attributename)
+        {
+            Productinstockandprices model = new Productinstockandprices();
+            model.Productvarcode = Variationcode;
+            model.Variationname = Variationname;
+            if (Attributename== "Productdescription")
+            {
+                return PartialView("_Productdescriptionpartial", model);
+            }
+            else if (Attributename == "Productfeatures")
+            {
+                return PartialView("_Productfeaturespartial", model);
+            }
+            else if(Attributename == "Productspecifications")
+            {
+                return PartialView("_Productspecificationspartial", model);
+            }else if (Attributename == "Productwhatsinbox")
+            {
+                return PartialView("_Productwhatsinboxpartial", model);
+            }else if (Attributename == "Imagepaths")
+            {
+                return PartialView("_Productimagepathspartial", model);
+            }
+            else
+                return PartialView("_Productpriceandstockpartial",model);
+        }
 
 
         #region Other methods
