@@ -119,7 +119,7 @@ function addproductsdata() {
 
 function updateproductvariation() {
     $.ajax({
-        url: "Editproductvariationfiels",
+        url: "Editproductvariationfields",
         data: {
             Productvarcode: $("#ProductvarcodeId").val(),
             Variationvalname: $("#VariationvalnameId").val(),

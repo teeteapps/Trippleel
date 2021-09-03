@@ -71,7 +71,7 @@ namespace Trippleel.Controllers
             else
                 return PartialView("_Productpriceandstockpartial",model);
         }
-
+        [HttpPost]
         public async Task<JsonResult> Editproductvariationfields(Productvariationsmodel model)
         {
             model.Modifiedby = SessionUserData.Staffcode;
