@@ -12,6 +12,7 @@ namespace DBL.Repositories
     public interface IProductRepository
     {
         #region Products
+        IEnumerable<Productvariations> Getallproductvariations(long Staffcode);
         GenericModel Addproductsdata(Products entity);
         #endregion
 

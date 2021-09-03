@@ -150,6 +150,15 @@ namespace DBL
         #endregion
 
         #region Products
+        
+         public Task<IEnumerable<Productvariations>> Getallproductvariations(long Staffcode)
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductRepository.Getallproductvariations(Staffcode);
+                return Resp;
+            });
+        }
         public Task<GenericModel> Addproductsdata(Products obj)
         {
             return Task.Run(() =>

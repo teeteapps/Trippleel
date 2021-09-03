@@ -19,9 +19,10 @@ namespace Trippleel.Controllers
         {
             bl = new BL(Util.ShareConnectionString.Value);
         }
-        public IActionResult Productlist()
+        public async Task<IActionResult> Productlist()
         {
-            return View();
+            var data = await bl.Getallproductvariations(SessionUserData.Staffcode);
+            return View(data);
         }
         [HttpGet]
         public IActionResult Addproduct()
@@ -43,14 +44,15 @@ namespace Trippleel.Controllers
             return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
         }
 
+
+
+        #region Other methods
         [HttpGet]
         public async Task<JsonResult> GetListModelbycode(long Valcode, ListModelType Name)
         {
             var data = await bl.GetListModelbycode(Valcode, Name);
             return Json(data);
         }
-
-        #region Other methods
         private void LoadParams()
         {
             var list = bl.GetListModel(ListModelType.productcategory).Result.Select(x => new SelectListItem

@@ -19,6 +19,14 @@ namespace DBL.Repositories
         }
 
         #region Product
+        public IEnumerable<Productvariations> Getallproductvariations(long Staffcode)
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                return connection.Query<Productvariations>(FindStatement(Productvariations.TableName, "Accountcode"), new { id = Staffcode }).ToList();
+            }
+        }
         public GenericModel Addproductsdata(Products entity)
         {
             using (var connection = new SqlConnection(_connString))

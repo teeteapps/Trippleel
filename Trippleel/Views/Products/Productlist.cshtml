@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<DBL.Enitites.Attributes>*@
+﻿@model IEnumerable<DBL.Model.Productvariations>
 @{
     ViewData["Title"] = "Productlist";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -21,18 +21,32 @@
                 <table class="table table-bordered table-striped compact nowrap text-nowrap flex-nowrap table-sm font-weight-light" id="productdatatable">
                     <thead>
                         <tr>
-                            <th class="font-weight-light">Attribute Name</th>
-                            <th class="float-right font-weight-light">Actions</th>
+                            <th class="font-weight-light">Name</th>
+                            <th class="font-weight-light">Brand</th>
+                            <th class="font-weight-light">Description</th>
+                            <th class="font-weight-light">Features</th>
+                            <th class="font-weight-light">Specifications</th>
+                            <th class="font-weight-light">What in Box</th>
+                            <th class="font-weight-light">In stock</th>
+                            <th class="font-weight-light">Price</th>
+                            <th class="font-weight-light">Discounted Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @*@foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td class="font-weight-light">@item.Attributename</td>
-                                    <td> <a href="#" class="btn btn-xs btn-danger float-right">Delete</a><a href="#" class="btn btn-xs btn-info float-right ml-1 mr-1">Edit</a><a href="#" class="btn btn-xs btn-info float-right" onclick="productattributedetails('@item.Attributecode','@item.Attributename')">Details</a></td>
-                                </tr>
-                            }*@
+                        @foreach (var item in Model)
+                         {
+                            <tr>
+                                <td class="font-weight-light">@item.Productvariationname</td>
+                                <td class="font-weight-light">@item.Productbrand</td>
+                                <td class="font-weight-light">@item.Productdesc</td>
+                                <td class="font-weight-light">@item.Productfeatures</td>
+                                <td class="font-weight-light">@item.Productspec</td>
+                                <td class="font-weight-light">@item.Productwhatsinbox</td>
+                                <td class="font-weight-light">@item.Productstock</td>
+                                <td class="font-weight-light">@item.Productprice</td>
+                                <td class="font-weight-light">@item.Productdprice</td>
+                            </tr>
+                         }
                     </tbody>
                 </table>
             </div>

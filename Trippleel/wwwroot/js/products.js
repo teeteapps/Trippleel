@@ -81,17 +81,6 @@ function loadproductattribute() {
 }
 
 function addproductsdata() {
-    var productdata = {
-        Productname: $("#productnameid").val(),
-        Productbrand: $("#Productbrandid").val(),
-        Categorycode: $("#prodcategory").val(),
-        Subcategorycode: $("#prodsubcategoryId").val(),
-        Hasattributeid: $("#hasattributeid").val(),
-        Productattributecode: $("#prodattribute").val(),
-        Productattributevaluecode: $("#prodattributevaluesid").val(),
-        Productcolorcode: $("#prodcolorId").val()
-    };
-    alert(JSON.stringify(productdata));
     $.ajax({
         url: "Addproducts",
         data: {
@@ -99,7 +88,7 @@ function addproductsdata() {
             Productbrand: $("#Productbrandid").val(),
             Categorycode: $("#prodcategory").val(),
             Subcategorycode: $("#prodsubcategoryId").val(),
-            Hasattributeid: $("#hasattributeid").val(),
+            Hasattributes: $("#hasattributeid").val(),
             Productattributecode: $("#prodattribute").val(),
             Productattributevaluecode: $("#prodattributevaluesid").val(),
             Productcolorcode: $("#prodcolorId").val()},
@@ -108,14 +97,21 @@ function addproductsdata() {
         success: function (result) {
             setTimeout(function () { location.reload(); }, 1000);
             if (result.code == 0) {
-                $("#productattributesmodal").hide();
+                $("#producdatamodal").hide();
                 toastr.success(result.msg);
             } else if (result.code == 1) {
                 toastr.danger(result.msg);
             } else {
                 toastr.danger('Database error occured. Kindly contact admin!');
             }
-            $("#attributenameid").val("");
+            $("#productnameid").val("");
+            $("#Productbrandid").val("");
+            $("#prodcategory").empty();
+            $("#prodsubcategoryId").empty();
+            $("#hasattributeid").empty();
+            $("#prodattribute").empty();
+            $("#prodattributevaluesid").empty();
+            $("#prodcolorId").empty();
         }
     });
     return false;
