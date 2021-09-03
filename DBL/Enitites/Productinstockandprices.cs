@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,10 @@ namespace DBL.Enitites
         public double Productprice { get; set; }
         public double Productdprice { get; set; }
         public int Productstock { get; set; }
+        public string Productdesc { get; set; }
+        public string Productfeatures { get; set; }
+        public string Productspecification { get; set; }
+        public string Productwhatsinbox { get; set; }
+        public IFormFile Productimagefile { get; set; }
     }
 }
