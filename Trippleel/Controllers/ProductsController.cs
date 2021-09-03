@@ -41,6 +41,10 @@ namespace Trippleel.Controllers
             model.Datecreated = DateTime.Now;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Addproductsdata(model);
+            if (resp.RespStatus > 1)
+            {
+                resp.RespStatus = 2; resp.RespMessage = "Database error occured";
+            }
             return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
         }
         [HttpGet]
@@ -77,6 +81,10 @@ namespace Trippleel.Controllers
             model.Modifiedby = SessionUserData.Staffcode;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Editproductvariationfields(model);
+            if (resp.RespStatus>1)
+            {
+                resp.RespStatus = 2;resp.RespMessage = "Database error occured";         
+            }
             return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
         }
 

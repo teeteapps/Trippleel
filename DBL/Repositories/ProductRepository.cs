@@ -68,7 +68,7 @@ namespace DBL.Repositories
                 parameters.Add("@Modifiedby", entity.Modifiedby);
                 parameters.Add("@Datemodified", entity.Datemodified);
 
-                return connection.Query<GenericModel>("Usp_Updateproductsattrdata", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return connection.Query<GenericModel>("Usp_Updateproductvariations", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
         #endregion
