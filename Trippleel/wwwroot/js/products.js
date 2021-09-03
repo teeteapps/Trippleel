@@ -83,6 +83,7 @@ function loadproductattribute() {
 function addproductsdata() {
     var productdata = {
         Productname: $("#productnameid").val(),
+        Productbrand: $("#Productbrandid").val(),
         Categorycode: $("#prodcategory").val(),
         Subcategorycode: $("#prodsubcategoryId").val(),
         Hasattributeid: $("#hasattributeid").val(),
@@ -95,6 +96,7 @@ function addproductsdata() {
         url: "Addproducts",
         data: {
             Productname: $("#productnameid").val(),
+            Productbrand: $("#Productbrandid").val(),
             Categorycode: $("#prodcategory").val(),
             Subcategorycode: $("#prodsubcategoryId").val(),
             Hasattributeid: $("#hasattributeid").val(),

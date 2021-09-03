@@ -9,6 +9,7 @@ namespace DBL.Enitites
     public class Products
     {
         public  string Productname { get; set; }
+        public  string Productbrand { get; set; }
         public long Accountcode { get; set; }
         public long Categorycode { get; set; }
         public long Subcategorycode { get; set; }

@@ -27,6 +27,7 @@ namespace DBL.Repositories
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("@Accountcode", entity.Accountcode);
                 parameters.Add("@Productname", entity.Productname);
+                parameters.Add("@@Productbrand", entity.Productbrand);
                 parameters.Add("@Categorycode", entity.Categorycode);
                 parameters.Add("@Subcategorycode", entity.Subcategorycode);
                 parameters.Add("@Hasattributes", entity.Hasattributes);
