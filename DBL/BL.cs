@@ -176,6 +176,14 @@ namespace DBL
                 return Resp;
             });
         }
+        public Task<GenericModel> Editproductvariationfields(Productvariationsmodel obj)
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductRepository.Editproductvariationfields(obj);
+                return Resp;
+            });
+        }
         #endregion
 
 

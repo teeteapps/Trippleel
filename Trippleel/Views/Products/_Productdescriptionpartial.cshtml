@@ -1,4 +1,4 @@
-﻿@model DBL.Enitites.Productinstockandprices
+﻿@model DBL.Enitites.Productvariationsmodel
 <div class="modal-header">
     <h5 class="text-sm modal-title font-weight-light text-capitalize" id="allpoliciesModalLabel">@Model.Variationname Details</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,7 +10,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <input asp-for="Productvarcode" class="form-control form-control-sm" hidden id="attributenameid" />
+                <input asp-for="Productvarcode" class="form-control form-control-sm" hidden id="ProductvarcodeId" />
+                <input asp-for="Variationvalname" class="form-control form-control-sm" hidden id="VariationvalnameId" />
             </div>
         </div>
     </div>
@@ -18,12 +19,12 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <label class="text-sm font-weight-light" asp-for="Productdesc"></label>
-                <textarea asp-for="Productdesc" class="form-control form-control-sm" id="attributenameid" ></textarea>
+                <textarea asp-for="Productdesc" class="form-control form-control-sm" id="ProductdescId" ></textarea>
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
-    <input type="submit" onclick="addproductattribute()" class="btn btn-sm btn-info" value="Save">
+    <input type="submit" onclick="updateproductvariation()" class="btn btn-sm btn-info" value="Save">
 </div>

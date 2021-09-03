@@ -44,26 +44,27 @@ namespace Trippleel.Controllers
             return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
         }
         [HttpGet]
-        public IActionResult Editproductvariationfiels(long Variationcode,string Variationname,string Attributename)
+        public IActionResult Editproductvariationfiels(long Variationcode,string Variationname,string variationvalname)
         {
-            Productinstockandprices model = new Productinstockandprices();
+            Productvariationsmodel model = new Productvariationsmodel();
             model.Productvarcode = Variationcode;
             model.Variationname = Variationname;
-            if (Attributename== "Productdescription")
+            model.Variationvalname = variationvalname;
+            if (variationvalname == "Productdescription")
             {
                 return PartialView("_Productdescriptionpartial", model);
             }
-            else if (Attributename == "Productfeatures")
+            else if (variationvalname == "Productfeatures")
             {
                 return PartialView("_Productfeaturespartial", model);
             }
-            else if(Attributename == "Productspecifications")
+            else if(variationvalname == "Productspecifications")
             {
                 return PartialView("_Productspecificationspartial", model);
-            }else if (Attributename == "Productwhatsinbox")
+            }else if (variationvalname == "Productwhatsinbox")
             {
                 return PartialView("_Productwhatsinboxpartial", model);
-            }else if (Attributename == "Imagepaths")
+            }else if (variationvalname == "Imagepaths")
             {
                 return PartialView("_Productimagepathspartial", model);
             }
@@ -71,6 +72,14 @@ namespace Trippleel.Controllers
                 return PartialView("_Productpriceandstockpartial",model);
         }
 
+        [HttpPost]
+        public async Task<JsonResult> Editproductvariationfields(Productvariationsmodel model)
+        {
+            model.Modifiedby = SessionUserData.Staffcode;
+            model.Datemodified = DateTime.Now;
+            var resp = await bl.Editproductvariationfields(model);
+            return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
+        }
 
         #region Other methods
         [HttpGet]

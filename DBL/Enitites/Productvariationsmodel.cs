@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace DBL.Enitites
 {
-    public class Productinstockandprices
+    public class Productvariationsmodel
     {
         public long Productvarcode { get; set; }
         public string Variationname { get; set; }
+        public string Variationvalname { get; set; }
         public double Productprice { get; set; }
         public double Productdprice { get; set; }
         public int Productstock { get; set; }
@@ -18,6 +19,10 @@ namespace DBL.Enitites
         public string Productfeatures { get; set; }
         public string Productspecification { get; set; }
         public string Productwhatsinbox { get; set; }
+
+        public long Modifiedby { get; set; }
+        public DateTime Datemodified { get; set; }
         public IFormFile Productimagefile { get; set; }
+        public string Productimagepath { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace DBL.Repositories
         #region Products
         IEnumerable<Productvariations> Getallproductvariations(long Staffcode);
         GenericModel Addproductsdata(Products entity);
+        GenericModel Editproductvariationfields(Productvariationsmodel entity);
         #endregion
 
 

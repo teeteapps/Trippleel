@@ -49,6 +49,28 @@ namespace DBL.Repositories
                 return connection.Query<GenericModel>("Usp_Addproductsdata", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
+        public GenericModel Editproductvariationfields(Productvariationsmodel entity)
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Productvarcode", entity.Productvarcode);
+                parameters.Add("@Variationvalname", entity.Variationvalname);
+                parameters.Add("@Productprice", entity.Productprice);
+                parameters.Add("@@Productdprice", entity.Productdprice);
+                parameters.Add("@Productstock", entity.Productstock);
+                parameters.Add("@Productdesc", entity.Productdesc);
+                parameters.Add("@Productfeatures", entity.Productfeatures);
+                parameters.Add("@Productspecification", entity.Productspecification);
+                parameters.Add("@Productwhatsinbox", entity.Productwhatsinbox);
+                parameters.Add("@Productimagepath", entity.Productimagepath);
+                parameters.Add("@Modifiedby", entity.Modifiedby);
+                parameters.Add("@Datemodified", entity.Datemodified);
+
+                return connection.Query<GenericModel>("Usp_Updateproductsattrdata", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
         #endregion
 
 
