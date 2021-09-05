@@ -83,7 +83,7 @@ namespace Trippleel.Controllers
         [HttpPost]
         public async Task<JsonResult> Editproductvariationfields(Productvariationsmodel model)
         {
-            if (model.Productimagefile.Length>0)
+            if (model.Variationname == "Imagepaths")
             {
                 string uniqueFileName = ProcessUploadedFile(model);
                 model.Productimagepath = uniqueFileName;

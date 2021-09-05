@@ -118,11 +118,43 @@ function addproductsdata() {
 }
 
 function updateproductvariation() {
-    alert("we are here");
-    var data = new FormData();
-    var Productimagefiles = $("#Productimagefilesid").get(0);
-    var files = Productimagefiles.files;
-    data.append(files[0].name, files[0]);
-    alert(JSON.stringify(data));
+    $.ajax({
+        url: "Editproductvariationfields",
+        data: {
+            Productvarcode: $("#ProductvarcodeId").val(),
+            Variationvalname: $("#VariationvalnameId").val(),
+            Productprice: $("#ProductpriceId").val(),
+            Productdprice: $("#ProductdpriceId").val(),
+            Productstock: $("#ProductstockId").val(),
+            Productdesc: $("#ProductdescId").val(),
+            Productfeatures: $("#ProductfeaturesId").val(),
+            Productspecification: $("#ProductspecificationId").val(),
+            Productwhatsinbox: $("#ProductwhatsinboxId").val(),
+            Productimagefile: $("#Productimagefilesid").val()
+        },
+        type: "POST",
+        dataType: 'json',
+        success: function (result) {
+            setTimeout(function () { location.reload(); }, 1000);
+            if (result.code == 0) {
+                $("#producdatamodal").hide();
+                toastr.success(result.msg);
+            } else if (result.code == 1) {
+                toastr.danger(result.msg);
+            } else {
+                toastr.danger('Database error occured. Kindly contact admin!');
+            }
+            $("#ProductvarcodeId").val("");
+            $("#VariationvalnameId").val("");
+            $("#ProductpriceId").val("");
+            $("#ProductdpriceId").val("");
+            $("#ProductstockId").val("");
+            $("#ProductdescId").val("");
+            $("#ProductfeaturesId").val("");
+            $("#ProductspecificationId").val("");
+            $("#ProductwhatsinboxId").val("");
+            $("#ProductimagepathId").val("");
+        }
+    });
     return false;
 }
