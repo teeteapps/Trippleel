@@ -27,6 +27,14 @@ namespace DBL.Repositories
                 return connection.Query<Productvariations>(FindStatement(Productvariations.TableName, "Accountcode"), new { id = Staffcode }).ToList();
             }
         }
+        public IEnumerable<Productvariations> Getallsetproductvariations()
+        {
+            using (var connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                return connection.Query<Productvariations>(FindStatement(Productvariations.TableName, "Isproductset"), new { id = 1 }).ToList();
+            }
+        }
         public GenericModel Addproductsdata(Products entity)
         {
             using (var connection = new SqlConnection(_connString))

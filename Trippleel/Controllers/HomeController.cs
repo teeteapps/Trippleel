@@ -25,9 +25,11 @@ namespace Trippleel.Controllers
         {
             return View();
         } 
-        public IActionResult Index()
+        [AllowAnonymous]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var data = await bl.Getallsetproductvariations();
+            return View(data);
         }
 
         public IActionResult Privacy()

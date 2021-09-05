@@ -159,6 +159,14 @@ namespace DBL
                 return Resp;
             });
         }
+        public Task<IEnumerable<Productvariations>> Getallsetproductvariations()
+        {
+            return Task.Run(() =>
+            {
+                var Resp = db.ProductRepository.Getallsetproductvariations();
+                return Resp;
+            });
+        }
         public Task<GenericModel> Addproductsdata(Products obj)
         {
             return Task.Run(() =>
