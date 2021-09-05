@@ -15,8 +15,4 @@
     <ProjectReference Include="..\DBL\DBL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Productimages\" />
-  </ItemGroup>
-
 </Project>

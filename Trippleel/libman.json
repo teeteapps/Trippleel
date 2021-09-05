@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "glidejs@2.1.0",
+      "destination": "wwwroot/lib/glidejs/"
+    }
+  ]
+}
