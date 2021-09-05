@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -83,13 +84,12 @@ namespace Trippleel.Controllers
         [HttpPost]
         public async Task<JsonResult> Editproductvariationfields(Productvariationsmodel model)
         {
-            if (model.Variationname == "Imagepaths")
+            if (model.Variationvalname == "Imagepaths")
             {
                 string uniqueFileName = ProcessUploadedFile(model);
                 model.Productimagepath = uniqueFileName;
 
             }
-           
             model.Modifiedby = SessionUserData.Staffcode;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Editproductvariationfields(model);
@@ -100,6 +100,7 @@ namespace Trippleel.Controllers
             return Json(new { code = resp.RespStatus, msg = resp.RespMessage });
         }
 
+
         #region Other methods
 
         private string ProcessUploadedFile(Productvariationsmodel model)
@@ -109,10 +110,11 @@ namespace Trippleel.Controllers
 
             if (model.Productimagefile != null)
             {
-                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Productimagefile.FileName;
-                filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                uniqueFileName = Guid.NewGuid().ToString();
+                string uploadPath = "~/Productimages/";
+                filePath = Path.Combine(uploadPath, uniqueFileName);
+                string newfilePath = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Productimages")).Root + $@"\{uniqueFileName}";
+                using (var fileStream = new FileStream(newfilePath, FileMode.Create))
                 {
                     model.Productimagefile.CopyTo(fileStream);
                 }

@@ -118,21 +118,31 @@ function addproductsdata() {
 }
 
 function updateproductvariation() {
+    var Variationname = $('#VariationvalnameId').val();
+    var formData = new FormData();
+    if (Variationname == "Imagepaths") {
+        var files = $("#Productimagefilesid").get(0).files;
+        formData.append("file", files[0]);
+        formData.append("Productimagename", files[0].name);
+        formData.append("Productimagefile", files[0]);
+    }
+    formData.append("Productvarcode", $('#ProductvarcodeId').val());
+    formData.append("Variationvalname", $('#VariationvalnameId').val());
+    formData.append("Productprice", $('#ProductpriceId').val());
+    formData.append("Productdprice", $('#ProductdpriceId').val());
+    formData.append("Productstock", $('#ProductstockId').val());
+    formData.append("Productdesc", $('#ProductdescId').val());
+    formData.append("Productfeatures", $('#ProductfeaturesId').val());
+    formData.append("Productspecification", $('#ProductspecificationId').val());
+    formData.append("Productwhatsinbox", $('#ProductwhatsinboxId').val());
+   
+
     $.ajax({
         url: "Editproductvariationfields",
-        data: {
-            Productvarcode: $("#ProductvarcodeId").val(),
-            Variationvalname: $("#VariationvalnameId").val(),
-            Productprice: $("#ProductpriceId").val(),
-            Productdprice: $("#ProductdpriceId").val(),
-            Productstock: $("#ProductstockId").val(),
-            Productdesc: $("#ProductdescId").val(),
-            Productfeatures: $("#ProductfeaturesId").val(),
-            Productspecification: $("#ProductspecificationId").val(),
-            Productwhatsinbox: $("#ProductwhatsinboxId").val(),
-            Productimagefile: $("#Productimagefilesid").val()
-        },
+        data: formData,
         type: "POST",
+        contentType: false,
+        processData: false,
         dataType: 'json',
         success: function (result) {
             setTimeout(function () { location.reload(); }, 1000);
@@ -158,3 +168,5 @@ function updateproductvariation() {
     });
     return false;
 }
+
+

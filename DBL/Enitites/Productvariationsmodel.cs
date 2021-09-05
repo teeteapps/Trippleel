@@ -23,6 +23,7 @@ namespace DBL.Enitites
         public long Modifiedby { get; set; }
         public DateTime Datemodified { get; set; }
         public IFormFile Productimagefile { get; set; }
+        public string Productimagename { get; set; }
         public string Productimagepath { get; set; }
     }
 }
