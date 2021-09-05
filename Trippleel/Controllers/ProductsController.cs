@@ -2,10 +2,13 @@
 using DBL.Enitites;
 using DBL.Enum;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,9 +18,11 @@ namespace Trippleel.Controllers
     public class ProductsController : BaseController
     {
         private readonly BL bl;
-        public ProductsController()
+        private readonly IWebHostEnvironment webHostEnvironment;
+        public ProductsController(IWebHostEnvironment hostEnvironment)
         {
             bl = new BL(Util.ShareConnectionString.Value);
+            webHostEnvironment = hostEnvironment;
         }
         public async Task<IActionResult> Productlist()
         {
@@ -78,6 +83,13 @@ namespace Trippleel.Controllers
         [HttpPost]
         public async Task<JsonResult> Editproductvariationfields(Productvariationsmodel model)
         {
+            if (model.Productimagefile.Length>0)
+            {
+                string uniqueFileName = ProcessUploadedFile(model);
+                model.Productimagepath = uniqueFileName;
+
+            }
+           
             model.Modifiedby = SessionUserData.Staffcode;
             model.Datemodified = DateTime.Now;
             var resp = await bl.Editproductvariationfields(model);
@@ -89,6 +101,25 @@ namespace Trippleel.Controllers
         }
 
         #region Other methods
+
+        private string ProcessUploadedFile(Productvariationsmodel model)
+        {
+            string uniqueFileName = null;
+            string filePath = null;
+
+            if (model.Productimagefile != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Productimagefile.FileName;
+                filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Productimagefile.CopyTo(fileStream);
+                }
+            }
+            return filePath;
+        }
+
         [HttpGet]
         public async Task<JsonResult> GetListModelbycode(long Valcode, ListModelType Name)
         {
